@@ -1,12 +1,17 @@
 extends Node3D
 class_name BulletBase
 
-@onready var player_hitbox : Area3D = $PlayerHitbox
-@onready var enemy_hitbox : Area3D = $EnemyHitbox
+@onready var player_hitbox : DamageCollision3D = $PlayerHitbox
+@onready var enemy_hitbox : DamageCollision3D = $EnemyHitbox
 
 var direction : Vector3
 var velocity : float
-var damage : int
+var damage : int :
+	get():
+		return player_hitbox.damage_value
+	set(value):
+		player_hitbox.damage_value = value
+		enemy_hitbox.damage_value = value
 var piercing : int
 var pierced : int
 

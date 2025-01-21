@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx7fgspfykjwy"]
+
+[ext_resource type="Texture2D" uid="uid://dbwidlukcjr47" path="res://assets/sprites/ui/heart01.tres" id="1_hmn4h"]
+[ext_resource type="Texture2D" uid="uid://wn31brtl61mm" path="res://assets/sprites/ui/heart02.tres" id="2_er1tg"]
+[ext_resource type="Texture2D" uid="uid://mtwiiro4sqs5" path="res://assets/sprites/ui/heart03.tres" id="3_ynmfo"]
+
+[sub_resource type="Animation" id="Animation_k7hnd"]
+resource_name = "cycle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_hmn4h"), ExtResource("2_er1tg"), ExtResource("3_ynmfo")]
+}
+
+[sub_resource type="Animation" id="Animation_tm7ld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_hmn4h")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tpsbe"]
+_data = {
+"RESET": SubResource("Animation_tm7ld"),
+"cycle": SubResource("Animation_k7hnd")
+}
+
+[node name="Heart" type="TextureRect"]
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("1_hmn4h")
+expand_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tpsbe")
+}
+autoplay = "cycle"

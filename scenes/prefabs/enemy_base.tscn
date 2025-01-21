@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5luwnouieqoe"]
+[gd_scene load_steps=4 format=3 uid="uid://c5luwnouieqoe"]
 
 [ext_resource type="Script" path="res://scripts/enemy_ai/enemy_base.gd" id="1_viphj"]
+[ext_resource type="PackedScene" uid="uid://bus10yoigfhkm" path="res://scenes/prefabs/bubble_mesh.tscn" id="2_vtffh"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="3_2uort"]
 
 [node name="EnemyBase" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_viphj")
@@ -12,3 +14,12 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+
+[node name="BubbleMesh" parent="." instance=ExtResource("2_vtffh")]
+visible = false
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_2uort")
+
+[connection signal="death" from="HealthComponent" to="." method="set_death_state" binds= [true]]
+[connection signal="death" from="HealthComponent" to="BubbleMesh" method="set_visible" binds= [true]]

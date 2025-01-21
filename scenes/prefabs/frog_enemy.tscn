@@ -28,7 +28,7 @@ size = Vector3(3, 2.5, 3)
 [sub_resource type="Resource" id="Resource_sf64p"]
 script = ExtResource("5_2r7q0")
 direction = Vector3(0, 0, -1)
-velocity = 1.0
+velocity = 10.0
 damage = 1
 alliance = 1
 piercing = 0
@@ -84,6 +84,9 @@ sounds = Array[AudioStreamOggVorbis]([ExtResource("14_pq23p"), ExtResource("15_f
 wait_time = 3.0
 autostart = true
 
+[node name="BubbleMesh" parent="." index="7"]
+transform = Transform3D(6.435, 0, 0, 0, 6.435, 0, 0, 0, 6.435, 0, 1.05436, 0)
+
 [connection signal="s_fire" from="FrogMesh" to="BulletSpawner" method="spawn_bullet"]
 [connection signal="s_fire" from="FrogMesh" to="BulletSpawner/Gargles" method="play_random_from_list"]
 [connection signal="s_fire" from="FrogMesh" to="BulletSpawner/Poots" method="play_random_from_list"]
@@ -91,3 +94,6 @@ autostart = true
 [connection signal="timeout" from="FireTimer" to="FrogMesh" method="_set_value" binds= ["fire", true]]
 [connection signal="timeout" from="UnfireTimer" to="FrogMesh" method="_set_value" flags=3 binds= ["fire", false]]
 [connection signal="timeout" from="GurpTimer" to="BulletSpawner/Gurps" method="play_random_from_list"]
+[connection signal="death" from="HealthComponent" to="FireTimer" method="stop"]
+[connection signal="death" from="HealthComponent" to="GurpTimer" method="stop"]
+[connection signal="death" from="HealthComponent" to="FrogMesh" method="_set_active" binds= [false]]

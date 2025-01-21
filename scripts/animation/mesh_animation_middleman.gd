@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 class_name MeshAnimationMiddleman
 
 @onready var animation_tree : AnimationTree = $AnimationTree as AnimationTree
@@ -9,6 +9,9 @@ signal s_fire
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	assert(animation_tree, "NO ANIMATION_TREE FOUND UNDER (" + name + ")")
+
+func _set_active(active : bool) -> void:
+	animation_tree.active = active
 
 func _get_value(property : String) -> Variant:
 	var path := property_path + property

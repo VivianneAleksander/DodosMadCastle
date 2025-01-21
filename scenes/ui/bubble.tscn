@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkhjdaj0mph8h"]
+
+[ext_resource type="Texture2D" uid="uid://jdu045gtfpij" path="res://assets/sprites/ui/bubble01.tres" id="1_4m2m0"]
+[ext_resource type="Texture2D" uid="uid://dssj6o25h5mka" path="res://assets/sprites/ui/bubble02.tres" id="2_7t7al"]
+[ext_resource type="Texture2D" uid="uid://c06ocmfty0daf" path="res://assets/sprites/ui/bubble03.tres" id="3_k7vpw"]
+
+[sub_resource type="Animation" id="Animation_tm7ld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_4m2m0")]
+}
+
+[sub_resource type="Animation" id="Animation_k7hnd"]
+resource_name = "cycle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_4m2m0"), ExtResource("2_7t7al"), ExtResource("3_k7vpw")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tpsbe"]
+_data = {
+"RESET": SubResource("Animation_tm7ld"),
+"cycle": SubResource("Animation_k7hnd")
+}
+
+[node name="Bubble" type="TextureRect"]
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("1_4m2m0")
+expand_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tpsbe")
+}
+autoplay = "cycle"

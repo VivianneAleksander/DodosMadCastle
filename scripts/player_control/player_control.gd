@@ -4,8 +4,12 @@ class_name PlayerControl
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@onready var health_component : HealthComponent = $HealthComponent
 
 func _physics_process(delta: float) -> void:
+	if health_component.health <= 0:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

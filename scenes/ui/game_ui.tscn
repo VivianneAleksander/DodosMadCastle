@@ -1,0 +1,796 @@
+[gd_scene load_steps=41 format=3 uid="uid://dndyjg2m23vce"]
+
+[ext_resource type="PackedScene" uid="uid://bx7fgspfykjwy" path="res://scenes/ui/heart.tscn" id="1_57u7d"]
+[ext_resource type="Script" path="res://scripts/player_control/game_ui.gd" id="1_iwdav"]
+[ext_resource type="Texture2D" uid="uid://sm21fyfex2u6" path="res://assets/sprites/ui/hand_left.tres" id="1_j4rvx"]
+[ext_resource type="PackedScene" uid="uid://bkhjdaj0mph8h" path="res://scenes/ui/bubble.tscn" id="1_v3utn"]
+[ext_resource type="Texture2D" uid="uid://itoqpn3pfkia" path="res://assets/sprites/ui/hand_right.tres" id="2_cev6u"]
+[ext_resource type="Texture2D" uid="uid://bk7oo4x633gue" path="res://assets/sprites/ui/melee_juice.tres" id="2_vynlg"]
+[ext_resource type="Texture2D" uid="uid://cd0p8jija0aib" path="res://assets/sprites/ui/hand_right_melee.tres" id="4_4d3nu"]
+[ext_resource type="Texture2D" uid="uid://ci5cor2t05jgd" path="res://assets/sprites/ui/crosshair.tres" id="6_034r6"]
+[ext_resource type="Script" path="res://scripts/disable_rects.gd" id="6_j3pfd"]
+
+[sub_resource type="Animation" id="Animation_2vsqs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandsControl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandsControl/HandRightMelee:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandsControl/HandRight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandsControl/HandLeft:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HandsControl:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HandsControl/HandRightMelee:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeleeJuice:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeleeJuice:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(394, 83)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MeleeJuice:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HandsControl/HandRight:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(842, 204)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HandsControl/HandRight:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HandsControl/HandRight:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bgrog"]
+resource_name = "fire"
+length = 0.1667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandsControl/HandLeft:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandsControl/HandRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(454, 405), Vector2(454, 442), Vector2(454, 405)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandsControl/HandRight:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.305, 1.305), Vector2(1.52, 1.52), Vector2(1.305, 1.305)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandsControl/HandRight:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.552956, 0.552956, 0.552956, 1), Color(0.462291, 0.462291, 0.462291, 1), Color(0.552956, 0.552956, 0.552956, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qyf2e"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandsControl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k7asr"]
+resource_name = "parry"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandsControl/HandLeft:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandsControl/HandRight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandsControl/HandRightMelee:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandsControl:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(0.277392, 2.82843, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-15, -12), Vector2(-650, -392)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HandsControl:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(2.282, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2.36, 2.36)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HandsControl/HandRightMelee:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.219501, 0.219501, 0.219501, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeleeJuice:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeleeJuice:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(0.0915054, 1),
+"update": 0,
+"values": [Vector2(394, 83), Vector2(394, -30)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MeleeJuice:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(0.0915, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t1n5x"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandsControl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u22wl"]
+resource_name = "death"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x5tke"]
+_data = {
+"RESET": SubResource("Animation_2vsqs"),
+"death": SubResource("Animation_u22wl"),
+"fire": SubResource("Animation_bgrog"),
+"idle": SubResource("Animation_qyf2e"),
+"parry": SubResource("Animation_k7asr"),
+"walk": SubResource("Animation_t1n5x")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sei3i"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w6ftb"]
+animation = &"fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cijs6"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_benw4"]
+animation = &"parry"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u8dea"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ma3t5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d537e"]
+advance_mode = 2
+advance_condition = &"walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_al65a"]
+advance_mode = 2
+advance_condition = &"not_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tkc5n"]
+advance_mode = 2
+advance_condition = &"parry"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_od6y8"]
+advance_mode = 2
+advance_condition = &"parry"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6mk8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hfv2u"]
+advance_mode = 2
+advance_condition = &"firing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0h1to"]
+break_loop_at_end = true
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"not_firing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iwksu"]
+advance_mode = 2
+advance_condition = &"firing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vnd1m"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_op6tq"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vjwwm"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_evhbx"]
+advance_mode = 2
+advance_condition = &"death"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_87u8k"]
+states/death/node = SubResource("AnimationNodeAnimation_sei3i")
+states/death/position = Vector2(762, 121)
+states/fire/node = SubResource("AnimationNodeAnimation_w6ftb")
+states/fire/position = Vector2(385, 246)
+states/idle/node = SubResource("AnimationNodeAnimation_cijs6")
+states/idle/position = Vector2(397, 63)
+states/parry/node = SubResource("AnimationNodeAnimation_benw4")
+states/parry/position = Vector2(553, 29)
+states/walk/node = SubResource("AnimationNodeAnimation_u8dea")
+states/walk/position = Vector2(540, 152)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ma3t5"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_d537e"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_al65a"), "walk", "parry", SubResource("AnimationNodeStateMachineTransition_tkc5n"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_od6y8"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_s6mk8"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_hfv2u"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_0h1to"), "walk", "fire", SubResource("AnimationNodeStateMachineTransition_iwksu"), "parry", "death", SubResource("AnimationNodeStateMachineTransition_vnd1m"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_op6tq"), "fire", "death", SubResource("AnimationNodeStateMachineTransition_vjwwm"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_evhbx")]
+graph_offset = Vector2(147, 16)
+
+[sub_resource type="Shader" id="Shader_mg430"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float radius = 1.0;
+uniform float alpha = 1.0;
+
+void fragment(){
+	COLOR.w = (1.0 - smoothstep(0.0, length(vec2(0.5) - UV.xy), (1.0 / radius))) * alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eox0p"]
+shader = SubResource("Shader_mg430")
+shader_parameter/radius = 3.98
+shader_parameter/alpha = 0.405
+
+[sub_resource type="Animation" id="Animation_pgwio"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtEffect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtEffect:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.405, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1lxtb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtEffect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtEffect:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.405]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3l62u"]
+_data = {
+"RESET": SubResource("Animation_1lxtb"),
+"hurt": SubResource("Animation_pgwio")
+}
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_iwdav")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_vertical_guides_ = [575.0]
+metadata/_edit_horizontal_guides_ = [381.0]
+
+[node name="MeleeJuice" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.342014
+anchor_top = -0.0462963
+anchor_right = 0.699653
+anchor_bottom = 0.563272
+offset_left = -0.000152588
+offset_top = 113.0
+offset_right = -0.000183105
+offset_bottom = 113.0
+texture = ExtResource("2_vynlg")
+expand_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="HandsControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HandLeft" type="TextureRect" parent="HandsControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0303819
+anchor_top = 0.569444
+anchor_right = 0.33941
+anchor_bottom = 1.11883
+texture = ExtResource("1_j4rvx")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="HandRight" type="TextureRect" parent="HandsControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.730903
+anchor_top = 0.314815
+anchor_right = 1.03993
+anchor_bottom = 1.3426
+offset_left = 0.000244141
+offset_top = -0.000152588
+offset_right = 0.000244141
+offset_bottom = -6.10352e-05
+texture = ExtResource("2_cev6u")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="HandRightMelee" type="TextureRect" parent="HandsControl"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.386285
+anchor_top = 0.385802
+anchor_right = 0.914931
+anchor_bottom = 1.40278
+texture = ExtResource("4_4d3nu")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="BubbleRects" type="Control" parent="." node_paths=PackedStringArray("rects")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_j3pfd")
+rects = [NodePath("BubblesHbox2/Bubble"), NodePath("BubblesHbox/Bubble"), NodePath("BubblesHbox2/Bubble2"), NodePath("BubblesHbox/Bubble2"), NodePath("BubblesHbox2/Bubble3"), NodePath("BubblesHbox/Bubble3"), NodePath("BubblesHbox2/Bubble4"), NodePath("BubblesHbox/Bubble4"), NodePath("BubblesHbox2/Bubble5"), NodePath("BubblesHbox/Bubble5"), NodePath("BubblesHbox2/Bubble6"), NodePath("BubblesHbox/Bubble6"), NodePath("BubblesHbox2/Bubble7"), NodePath("BubblesHbox/Bubble7"), NodePath("BubblesHbox2/Bubble8"), NodePath("BubblesHbox/Bubble8"), NodePath("BubblesHbox2/Bubble9"), NodePath("BubblesHbox/Bubble9")]
+metadata/_edit_use_anchors_ = true
+
+[node name="BubblesHbox2" type="HBoxContainer" parent="BubbleRects"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.625868
+anchor_top = 0.816358
+anchor_right = 0.951944
+anchor_bottom = 0.971823
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Bubble" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble2" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble3" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble4" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble5" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble6" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble7" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble8" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble9" parent="BubbleRects/BubblesHbox2" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="BubblesHbox" type="HBoxContainer" parent="BubbleRects"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.645833
+anchor_top = 0.854938
+anchor_right = 0.971909
+anchor_bottom = 1.0104
+offset_left = -0.00012207
+offset_right = 0.00012207
+offset_bottom = -6.10352e-05
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Bubble" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble2" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble3" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble4" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble5" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble6" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble7" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble8" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="Bubble9" parent="BubbleRects/BubblesHbox" instance=ExtResource("1_v3utn")]
+layout_mode = 2
+
+[node name="HealthRects" type="Control" parent="." node_paths=PackedStringArray("rects")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_j3pfd")
+rects = [NodePath("HeartHbox/Heart"), NodePath("HeartHbox/Heart2"), NodePath("HeartHbox/Heart3"), NodePath("HeartHbox/Heart4"), NodePath("HeartHbox/Heart5"), NodePath("HeartHbox/Heart6")]
+
+[node name="HeartHbox" type="HBoxContainer" parent="HealthRects"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0112847
+anchor_top = 0.839506
+anchor_right = 0.326943
+anchor_bottom = 1.01195
+metadata/_edit_use_anchors_ = true
+
+[node name="Heart" parent="HealthRects/HeartHbox" instance=ExtResource("1_57u7d")]
+layout_mode = 2
+
+[node name="Heart2" parent="HealthRects/HeartHbox" instance=ExtResource("1_57u7d")]
+layout_mode = 2
+
+[node name="Heart3" parent="HealthRects/HeartHbox" instance=ExtResource("1_57u7d")]
+layout_mode = 2
+
+[node name="Heart4" parent="HealthRects/HeartHbox" instance=ExtResource("1_57u7d")]
+layout_mode = 2
+
+[node name="Heart5" parent="HealthRects/HeartHbox" instance=ExtResource("1_57u7d")]
+layout_mode = 2
+
+[node name="Heart6" parent="HealthRects/HeartHbox" instance=ExtResource("1_57u7d")]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x5tke")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_87u8k")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/death = false
+parameters/conditions/firing = false
+parameters/conditions/not_firing = false
+parameters/conditions/not_walking = false
+parameters/conditions/parry = false
+parameters/conditions/walking = false
+
+[node name="CrosshairControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CrosshairControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.477431
+anchor_top = 0.557099
+anchor_right = 0.518264
+anchor_bottom = 0.618827
+offset_bottom = 3.05176e-05
+texture = ExtResource("6_034r6")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="HurtEffect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_eox0p")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.858824, 0, 0.266667, 1)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3l62u")
+}

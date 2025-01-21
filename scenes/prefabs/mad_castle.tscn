@@ -1,0 +1,74 @@
+[gd_scene load_steps=23 format=3 uid="uid://bc3ynok8dlb78"]
+
+[ext_resource type="PackedScene" uid="uid://cxtcnaf0dh50v" path="res://assets/meshes/mad_castle.glb" id="1_kx6x4"]
+[ext_resource type="Texture2D" uid="uid://dswxag8pj3aig" path="res://assets/textures/Bricks068_2K-PNG_Color.png" id="2_iklot"]
+[ext_resource type="Texture2D" uid="uid://dr5uwhop5x0ia" path="res://assets/textures/Bricks068_2K-PNG_NormalGL.png" id="3_1ia18"]
+[ext_resource type="Texture2D" uid="uid://doh3g1w26ge20" path="res://assets/textures/Bricks068_2K-PNG_Roughness.png" id="4_4v4ig"]
+[ext_resource type="Texture2D" uid="uid://bs6cgkroyp3ja" path="res://assets/textures/WoodSiding013_2K-PNG_Color.png" id="5_tj5r6"]
+[ext_resource type="Texture2D" uid="uid://dpnc6dgpi8mlj" path="res://assets/textures/WoodSiding013_2K-PNG_NormalGL.png" id="6_ado3n"]
+[ext_resource type="Texture2D" uid="uid://k7tgd8kbpb8" path="res://assets/textures/WoodSiding013_2K-PNG_Roughness.png" id="7_o28ol"]
+[ext_resource type="Texture2D" uid="uid://c3bf85a8yshdu" path="res://assets/textures/Metal007_2K-PNG_Color.png" id="8_vncwk"]
+[ext_resource type="Texture2D" uid="uid://7rjd48qc1q57" path="res://assets/textures/Metal007_2K-PNG_Metalness.png" id="9_hu8ee"]
+[ext_resource type="Texture2D" uid="uid://b64hg3ncn68ov" path="res://assets/textures/Metal007_2K-PNG_NormalGL.png" id="10_u1uwg"]
+[ext_resource type="Texture2D" uid="uid://bs1r8mrgknewt" path="res://assets/textures/Metal007_2K-PNG_Roughness.png" id="11_l5yw7"]
+[ext_resource type="Texture2D" uid="uid://pt66dasne5nu" path="res://assets/textures/Ground060_2K-PNG_Color.png" id="12_myk1d"]
+[ext_resource type="Texture2D" uid="uid://d10k5js7gchv1" path="res://assets/textures/Ground060_2K-PNG_NormalGL.png" id="13_c2kbo"]
+[ext_resource type="Texture2D" uid="uid://cdcq0qu27ownq" path="res://assets/textures/Ground060_2K-PNG_Roughness.png" id="14_4753s"]
+[ext_resource type="Texture2D" uid="uid://bhdonw1hgbdqc" path="res://assets/textures/Ground013_2K-PNG_Color.png" id="15_dpvb2"]
+[ext_resource type="Texture2D" uid="uid://bdmia1le6s5ha" path="res://assets/textures/Ground013_2K-PNG_NormalGL.png" id="16_uwa60"]
+[ext_resource type="Texture2D" uid="uid://brrpguyo5g7ah" path="res://assets/textures/Ground013_2K-PNG_Roughness.png" id="17_1wnod"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymc3v"]
+albedo_color = Color(0.835294, 1, 0.929412, 1)
+albedo_texture = ExtResource("2_iklot")
+roughness_texture = ExtResource("4_4v4ig")
+normal_enabled = true
+normal_texture = ExtResource("3_1ia18")
+uv1_scale = Vector3(8.94, 8.94, 8.94)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp5vi"]
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("5_tj5r6")
+roughness_texture = ExtResource("7_o28ol")
+normal_enabled = true
+normal_texture = ExtResource("6_ado3n")
+uv1_scale = Vector3(17.015, 17.015, 17.015)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_algu6"]
+albedo_color = Color(1, 1, 0.576471, 1)
+albedo_texture = ExtResource("8_vncwk")
+metallic = 1.0
+metallic_texture = ExtResource("9_hu8ee")
+roughness_texture = ExtResource("11_l5yw7")
+normal_enabled = true
+normal_texture = ExtResource("10_u1uwg")
+rim_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kw7rq"]
+albedo_texture = ExtResource("12_myk1d")
+roughness_texture = ExtResource("14_4753s")
+normal_enabled = true
+normal_texture = ExtResource("13_c2kbo")
+rim_enabled = true
+uv1_scale = Vector3(8, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_it5n3"]
+albedo_color = Color(1, 0.843137, 0, 1)
+albedo_texture = ExtResource("15_dpvb2")
+roughness_texture = ExtResource("17_1wnod")
+normal_enabled = true
+normal_texture = ExtResource("16_uwa60")
+uv1_scale = Vector3(2.21, 2.21, 2.21)
+
+[node name="MadCastle" type="Node3D"]
+
+[node name="Mesh" parent="." instance=ExtResource("1_kx6x4")]
+
+[node name="MadCastle" parent="Mesh" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ymc3v")
+surface_material_override/1 = SubResource("StandardMaterial3D_tp5vi")
+surface_material_override/2 = SubResource("StandardMaterial3D_algu6")
+surface_material_override/3 = SubResource("StandardMaterial3D_kw7rq")
+surface_material_override/4 = SubResource("StandardMaterial3D_it5n3")
+
+[editable path="Mesh"]

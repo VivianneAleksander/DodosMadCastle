@@ -3,7 +3,8 @@ class_name CameraControl
 
 # Credit Tavurth : https://github.com/tavurth/godot-simple-fps-camera/tree/master
 
-@onready var Player = get_parent()
+@onready var Player = $"../.."
+var enabled : bool = true
 
 ## Increase this value to give a slower turn speed
 const CAMERA_TURN_SPEED = 200
@@ -35,6 +36,7 @@ func look_leftright_rotation(new_rotation = 0):
 	return Player.get_rotation() + Vector3(0, new_rotation, 0)
 
 func _input(event):
+	if not enabled: return
 	"""
 	First person camera controls
 	"""
@@ -66,3 +68,6 @@ func _leave_tree():
 	Show the mouse when we leave
 	"""
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _set_enabled(v : bool):
+	enabled = v

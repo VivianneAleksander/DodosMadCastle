@@ -19,4 +19,4 @@ transform = Transform3D(-0.866025, -0.433013, -0.25, 5.96046e-08, 0.5, -0.866025
 light_energy = 0.56
 
 [node name="FrogEnemy" parent="." instance=ExtResource("3_t1og1")]
-script = null
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.06917, 0)
