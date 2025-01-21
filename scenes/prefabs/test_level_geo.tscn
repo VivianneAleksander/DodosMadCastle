@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhqh5qokbfvtm"]
+
+[ext_resource type="PackedScene" uid="uid://ce64fhmcnt3dp" path="res://assets/meshes/test_geo.glb" id="1_v2li8"]
+
+[node name="TestLevelGeo" type="Node3D"]
+
+[node name="Mesh" parent="." instance=ExtResource("1_v2li8")]
+
+[node name="BoundaryCollider" parent="Mesh/TestGeo" index="0"]
+visible = false
+
+[editable path="Mesh"]

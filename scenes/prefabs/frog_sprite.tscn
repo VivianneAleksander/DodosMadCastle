@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bt8p6rg7nhwr8"]
+
+[ext_resource type="Texture2D" uid="uid://cajvoctdfxxe" path="res://assets/sprites/frog/frog_idle_body.tres" id="1_ai67q"]
+[ext_resource type="Texture2D" uid="uid://ds8b7cctwxu02" path="res://assets/sprites/frog/frog_idle_eyes.tres" id="2_41t3e"]
+[ext_resource type="Texture2D" uid="uid://cix6tesfenbg7" path="res://assets/sprites/frog/frog_idle_frills.tres" id="3_c0kll"]
+[ext_resource type="Texture2D" uid="uid://b5vl7sr2bliwg" path="res://assets/sprites/frog/frog_fire_body.tres" id="4_4vhl7"]
+[ext_resource type="Texture2D" uid="uid://jyjqtsuadwad" path="res://assets/sprites/frog/frog_fire_eyes.tres" id="5_532sk"]
+[ext_resource type="Texture2D" uid="uid://c382he1kc3uj8" path="res://assets/sprites/frog/frog_fire_frills.tres" id="6_cag8f"]
+
+[node name="FrogSprite" type="Node2D"]
+
+[node name="Idle" type="Node2D" parent="."]
+position = Vector2(1012, 771)
+
+[node name="FrogIdleBody" type="Sprite2D" parent="Idle"]
+texture = ExtResource("1_ai67q")
+
+[node name="FrogIdleEyes" type="Sprite2D" parent="Idle"]
+z_index = 1
+position = Vector2(-9, -556)
+texture = ExtResource("2_41t3e")
+
+[node name="FrogIdleFrills" type="Sprite2D" parent="Idle"]
+z_index = -1
+position = Vector2(-4, -496)
+texture = ExtResource("3_c0kll")
+
+[node name="Fire" type="Node2D" parent="."]
+visible = false
+position = Vector2(1012, 839)
+
+[node name="FrogFireBody" type="Sprite2D" parent="Fire"]
+texture = ExtResource("4_4vhl7")
+
+[node name="FrogFireEyes" type="Sprite2D" parent="Fire"]
+z_index = 1
+position = Vector2(-9, -450)
+texture = ExtResource("5_532sk")
+
+[node name="FrogFireFrills" type="Sprite2D" parent="Fire"]
+z_index = -1
+position = Vector2(-9, -496)
+texture = ExtResource("6_cag8f")

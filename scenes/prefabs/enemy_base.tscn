@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5luwnouieqoe"]
+
+[ext_resource type="Script" path="res://scripts/enemy_ai/enemy_base.gd" id="1_viphj"]
+
+[node name="EnemyBase" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_viphj")
+
+[node name="PhysicsCollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]

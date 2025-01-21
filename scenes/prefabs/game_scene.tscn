@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyj7j8snnmhnx"]
+
+[ext_resource type="PackedScene" uid="uid://bhqh5qokbfvtm" path="res://scenes/prefabs/test_level_geo.tscn" id="1_pen5i"]
+[ext_resource type="PackedScene" uid="uid://c5un4m5w64ltw" path="res://scenes/prefabs/player.tscn" id="2_wdfib"]
+[ext_resource type="PackedScene" uid="uid://d1dn4kgasufbx" path="res://scenes/prefabs/frog_enemy.tscn" id="3_t1og1"]
+
+[node name="GameScene" type="Node3D"]
+
+[node name="TestLevelGeo" parent="." instance=ExtResource("1_pen5i")]
+
+[node name="Player" parent="." instance=ExtResource("2_wdfib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.39242, -3.27349)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 11, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, -0.25, 5.96046e-08, 0.5, -0.866025, 0.5, -0.75, -0.433013, 0, 11, 0)
+light_energy = 0.56
+
+[node name="FrogEnemy" parent="." instance=ExtResource("3_t1og1")]
+script = null
