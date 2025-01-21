@@ -409,6 +409,7 @@ autoplay = true
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("23_rxl5y")
+max_health = 6
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("25_sy6f4")

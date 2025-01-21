@@ -11,7 +11,7 @@ func update_rects(n : int) -> void:
 	
 	number_enabled = n
 	for i in rects.size():
-		if i > number_enabled:
+		if i >= number_enabled:
 			rects[i].modulate = Color(1, 1, 1, 0)
 		else:
 			rects[i].modulate = Color(1, 1, 1, 1)
