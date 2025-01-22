@@ -15,10 +15,15 @@ const GRAV_CURVE = 0.75
 var playerVelocity : Vector3
 var airTimer : float
 var inParry : bool
+var manager : gameManager
 
-func _init():
+func start_game(man):
 	playerVelocity = Vector3.ZERO
 	inParry = false
+	manager = man
+
+func reload_level():
+	manager.reload_level()
 
 func _physics_process(delta: float) -> void:
 	if health_component.health <= 0:

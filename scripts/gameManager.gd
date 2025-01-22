@@ -10,6 +10,7 @@ var loaded_level
 func _ready():
 	loaded_level = null
 	index = -1
+	Player.start_game(self)
 	load_next_level()
 
 func reload_level():
