@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0n67ir2hm455"]
+
+[ext_resource type="PackedScene" uid="uid://odf8lro3trne" path="res://assets/meshes/elevator.glb" id="1_7ymsj"]
+[ext_resource type="Script" path="res://scripts/level_exit.gd" id="1_ori6f"]
+[ext_resource type="Material" uid="uid://5e5bpq71gqb5" path="res://assets/materials/elevator_metal.tres" id="2_coq7y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxib8"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dupdh"]
+size = Vector3(2.66406, 3.20502, 1.57031)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p5o7f"]
+size = Vector3(2.66406, 3.20502, 0.931396)
+
+[node name="LevelExit" type="Node3D"]
+script = ExtResource("1_ori6f")
+
+[node name="Mesh" parent="." instance=ExtResource("1_7ymsj")]
+
+[node name="Elevator" parent="Mesh" index="0"]
+surface_material_override/0 = ExtResource("2_coq7y")
+surface_material_override/1 = SubResource("StandardMaterial3D_sxib8")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59171, -0.298633)
+shape = SubResource("BoxShape3D_dupdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59171, 0.0208252)
+shape = SubResource("BoxShape3D_p5o7f")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="Mesh"]

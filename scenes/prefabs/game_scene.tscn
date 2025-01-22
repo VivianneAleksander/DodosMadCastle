@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyj7j8snnmhnx"]
+[gd_scene load_steps=4 format=3 uid="uid://dyj7j8snnmhnx"]
 
 [ext_resource type="PackedScene" uid="uid://34ksgjw5cstv" path="res://scenes/levels/level_01.tscn" id="2_lmpup"]
 [ext_resource type="PackedScene" uid="uid://c5un4m5w64ltw" path="res://scenes/prefabs/player.tscn" id="2_wdfib"]
+
+[sub_resource type="Environment" id="Environment_o6n2x"]
+background_mode = 1
+background_color = Color(0.614079, 0.522104, 0.581793, 1)
 
 [node name="GameScene" type="Node3D"]
 
@@ -12,3 +16,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.39242, -3.27349)
 transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 11, 0)
 
 [node name="Level01" parent="." instance=ExtResource("2_lmpup")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o6n2x")

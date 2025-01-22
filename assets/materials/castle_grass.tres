@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://dmwt8t35uou5d"]
+
+[ext_resource type="Texture2D" uid="uid://bhdonw1hgbdqc" path="res://assets/textures/Ground013_2K-PNG_Color.png" id="1_mdvjd"]
+[ext_resource type="Texture2D" uid="uid://bdmia1le6s5ha" path="res://assets/textures/Ground013_2K-PNG_NormalGL.png" id="2_1qrc4"]
+[ext_resource type="Texture2D" uid="uid://brrpguyo5g7ah" path="res://assets/textures/Ground013_2K-PNG_Roughness.png" id="3_2aa0s"]
+
+[resource]
+albedo_color = Color(1, 0.843137, 0, 1)
+albedo_texture = ExtResource("1_mdvjd")
+roughness_texture = ExtResource("3_2aa0s")
+normal_enabled = true
+normal_texture = ExtResource("2_1qrc4")
+uv1_scale = Vector3(2.21, 2.21, 2.21)
