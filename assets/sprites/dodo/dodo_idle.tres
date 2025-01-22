@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://k7t15w1mqwa8"]
+
+[ext_resource type="Texture2D" uid="uid://dgrpsvc7husi3" path="res://assets/sprites/dodo/dodo.png" id="1_qsw4q"]
+
+[resource]
+atlas = ExtResource("1_qsw4q")
+region = Rect2(265.446, 23.946, 1427.62, 1868.06)

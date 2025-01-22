@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cw3w42hfy4vee" path="res://assets/sprites/ui/hand_climbing.tres" id="4_u6eii"]
 [ext_resource type="Texture2D" uid="uid://ci5cor2t05jgd" path="res://assets/sprites/ui/crosshair.tres" id="6_034r6"]
 [ext_resource type="Script" path="res://scripts/disable_rects.gd" id="6_j3pfd"]
+[ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="11_d4ky5"]
 
 [sub_resource type="Animation" id="Animation_2vsqs"]
 length = 0.001
@@ -594,21 +595,8 @@ states/walk/position = Vector2(540, 152)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ma3t5"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_d537e"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_al65a"), "walk", "parry", SubResource("AnimationNodeStateMachineTransition_tkc5n"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_od6y8"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_s6mk8"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_hfv2u"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_0h1to"), "walk", "fire", SubResource("AnimationNodeStateMachineTransition_iwksu"), "parry", "death", SubResource("AnimationNodeStateMachineTransition_vnd1m"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_op6tq"), "fire", "death", SubResource("AnimationNodeStateMachineTransition_vjwwm"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_evhbx"), "idle", "climb", SubResource("AnimationNodeStateMachineTransition_r4fsm"), "climb", "idle", SubResource("AnimationNodeStateMachineTransition_5ewe3"), "walk", "climb", SubResource("AnimationNodeStateMachineTransition_4ny38"), "climb", "death", SubResource("AnimationNodeStateMachineTransition_aoqnl")]
 graph_offset = Vector2(117, 67)
 
-[sub_resource type="Shader" id="Shader_mg430"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
-
-shader_type canvas_item;
-render_mode blend_mix;
-
-uniform float radius = 1.0;
-uniform float alpha = 1.0;
-
-void fragment(){
-	COLOR.w = (1.0 - smoothstep(0.0, length(vec2(0.5) - UV.xy), (1.0 / radius))) * alpha;
-}"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eox0p"]
-shader = SubResource("Shader_mg430")
+shader = ExtResource("11_d4ky5")
 shader_parameter/radius = 3.98
 shader_parameter/alpha = 0.405
 

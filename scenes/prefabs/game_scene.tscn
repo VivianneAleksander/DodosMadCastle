@@ -4,11 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c8iq0i6l1x8q" path="res://scenes/levels/level_02.tscn" id="2_6mgqb"]
 [ext_resource type="PackedScene" uid="uid://c5un4m5w64ltw" path="res://scenes/prefabs/player.tscn" id="2_wdfib"]
 [ext_resource type="PackedScene" uid="uid://dxibtdkvno884" path="res://scenes/levels/level_boss.tscn" id="3_g3ttc"]
-
-[sub_resource type="Environment" id="Environment_o6n2x"]
-background_mode = 1
-background_color = Color(0.614079, 0.522104, 0.581793, 1)
-background_energy_multiplier = 1.1
+[ext_resource type="PackedScene" uid="uid://c0jua411lyvnm" path="res://scenes/prefabs/world_environment.tscn" id="5_0etlw"]
 
 [node name="GameScene" type="Node3D" node_paths=PackedStringArray("Player")]
 script = ExtResource("1_wetw0")
@@ -21,5 +17,4 @@ transform = Transform3D(0.0718108, 0, 0.997418, 0, 1, 0, -0.997418, 0, 0.0718108
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 11, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_o6n2x")
+[node name="WorldEnvironment" parent="." instance=ExtResource("5_0etlw")]

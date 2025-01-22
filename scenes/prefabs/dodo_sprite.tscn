@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bstc0wiipntvt"]
+
+[ext_resource type="Texture2D" uid="uid://k7t15w1mqwa8" path="res://assets/sprites/dodo/dodo_idle.tres" id="1_v8dpj"]
+
+[node name="DodoSprite" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(728, 944)
+texture = ExtResource("1_v8dpj")

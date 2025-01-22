@@ -1,0 +1,356 @@
+[gd_scene load_steps=13 format=3 uid="uid://dkrvm2ngeqpfi"]
+
+[ext_resource type="PackedScene" uid="uid://bc3ynok8dlb78" path="res://scenes/prefabs/mad_castle.tscn" id="1_jd3uj"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_t6q4c"]
+[ext_resource type="PackedScene" uid="uid://c0jua411lyvnm" path="res://scenes/prefabs/world_environment.tscn" id="2_2wma1"]
+[ext_resource type="PackedScene" uid="uid://dyj7j8snnmhnx" path="res://scenes/prefabs/game_scene.tscn" id="2_qc1ag"]
+[ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="3_srt0a"]
+[ext_resource type="FontFile" uid="uid://dufcfsvq068e3" path="res://assets/fonts/WeirdComic-Regular.ttf" id="4_nei82"]
+[ext_resource type="FontFile" uid="uid://bddfu72eg078b" path="res://assets/fonts/Ember.otf" id="5_xay75"]
+
+[sub_resource type="Animation" id="Animation_2wngj"]
+resource_name = "lightning"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 28.2, 28.3, 28.8, 28.9, 29, 29.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 28.2, 28.3, 28.8, 28.9, 29, 29.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_avw6q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer3/Control:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer3/Control/ColorRect/Label2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer3/Control/ColorRect/Label3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yr71d"]
+resource_name = "enter_text"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer3/Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer3/Control/ColorRect/Label2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer3/Control/ColorRect/Label3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enter_game_proper"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sil0o"]
+_data = {
+"RESET": SubResource("Animation_avw6q"),
+"enter_text": SubResource("Animation_yr71d"),
+"lightning": SubResource("Animation_2wngj")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lo1ro"]
+shader = ExtResource("3_srt0a")
+shader_parameter/radius = 3.53
+shader_parameter/alpha = 1.0
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_t6q4c")
+game_scene = ExtResource("2_qc1ag")
+
+[node name="MadCastle" parent="." instance=ExtResource("1_jd3uj")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.75471, 0, 0.656059, 0, 1, 0, -0.656059, 0, 0.75471, 5.695, 0.115, 7.644)
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_2wma1")]
+
+[node name="DirectionalLight3DMain" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.562776, 5.03161e-08, -0.826609, 0.779105, 0.334119, 0.530434, 0.276186, -0.942531, 0.188034, 0, 6.41369, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.562776, 0, -0.826609, 0.779105, 0.334119, 0.530434, 0.276186, -0.942531, 0.188034, 0, 6.41369, 0)
+visible = false
+light_energy = 4.736
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.387686, 0.407203, 0.826973, -0.779471, 0.334082, -0.529919, -0.492061, -0.850044, 0.187884, 0, 6.41369, 0)
+visible = false
+light_energy = 1.406
+light_negative = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sil0o")
+}
+autoplay = "lightning"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+material = SubResource("ShaderMaterial_lo1ro")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 23.0
+offset_right = 312.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0.466599, 0.000169613, 0.473192, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("4_nei82")
+theme_override_font_sizes/font_size = 71
+text = "Dodo's"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 93.0
+offset_right = 392.0
+offset_bottom = 175.0
+theme_override_colors/font_color = Color(0.594625, 0.00464808, 0.506892, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("4_nei82")
+theme_override_font_sizes/font_size = 71
+text = "Mad"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 161.0
+offset_right = 497.0
+offset_bottom = 243.0
+theme_override_colors/font_color = Color(0.86459, 7.66242e-05, 0.67807, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("4_nei82")
+theme_override_font_sizes/font_size = 71
+text = "Castle"
+horizontal_alignment = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer2/Control"]
+layout_mode = 2
+offset_left = 96.0
+offset_top = 472.0
+offset_right = 321.0
+offset_bottom = 531.0
+theme_override_fonts/font = ExtResource("5_xay75")
+text = "Enter"
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer3"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer3/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer3/Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 377.0
+offset_top = 126.0
+offset_right = -338.0
+offset_bottom = -421.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_xay75")
+theme_override_font_sizes/font_size = 46
+text = "YOU    ARE    THE 
+BUBBLEMANCER"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer3/Control/ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 377.0
+offset_top = 276.0
+offset_right = -338.0
+offset_bottom = -271.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_xay75")
+theme_override_font_sizes/font_size = 46
+text = "ASCEND    THE
+MAD    THRONE"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer3/Control/ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 377.0
+offset_top = 445.0
+offset_right = -338.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_xay75")
+theme_override_font_sizes/font_size = 46
+text = "USURP    THE
+DODO    KING"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer2/Control/Button" to="." method="enter_game_animation"]

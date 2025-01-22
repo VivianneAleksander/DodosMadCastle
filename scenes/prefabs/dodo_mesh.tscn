@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://5via0dn1sb7c"]
+
+[ext_resource type="PackedScene" uid="uid://bstc0wiipntvt" path="res://scenes/prefabs/dodo_sprite.tscn" id="1_gv238"]
+[ext_resource type="PackedScene" uid="uid://bus10yoigfhkm" path="res://scenes/prefabs/bubble_mesh.tscn" id="2_sjctl"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iv521"]
+viewport_path = NodePath("SpriteContainer/Sprite3D/SubViewport")
+
+[node name="DodoMesh" type="Node3D"]
+
+[node name="SpriteContainer" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="SpriteContainer"]
+transform = Transform3D(0.325, 0, 0, 0, 0.325, 0, 0, 0, 0.325, 0, 0, 0)
+billboard = 2
+texture = SubResource("ViewportTexture_iv521")
+
+[node name="SubViewport" type="SubViewport" parent="SpriteContainer/Sprite3D"]
+transparent_bg = true
+size = Vector2i(1382, 1857)
+
+[node name="DodoSprite" parent="SpriteContainer/Sprite3D/SubViewport" instance=ExtResource("1_gv238")]
+
+[node name="BubbleMesh" parent="." instance=ExtResource("2_sjctl")]
+transform = Transform3D(11.945, 0, 0, 0, 11.945, 0, 0, 0, 11.945, 0, 0, 0)

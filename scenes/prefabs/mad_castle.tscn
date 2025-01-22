@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bc3ynok8dlb78"]
+[gd_scene load_steps=9 format=3 uid="uid://bc3ynok8dlb78"]
 
 [ext_resource type="PackedScene" uid="uid://cxtcnaf0dh50v" path="res://assets/meshes/mad_castle.glb" id="1_kx6x4"]
 [ext_resource type="Material" uid="uid://bxrf6av2b3mpp" path="res://assets/materials/castle_brick.tres" id="2_icd54"]
@@ -6,16 +6,30 @@
 [ext_resource type="Material" uid="uid://bh8o27yttj6jr" path="res://assets/materials/castle_brass.tres" id="4_inao4"]
 [ext_resource type="Material" uid="uid://ctc6h7lckd7fk" path="res://assets/materials/castle_eggshell.tres" id="5_yhjmb"]
 [ext_resource type="Material" uid="uid://dmwt8t35uou5d" path="res://assets/materials/castle_grass.tres" id="6_jo8eh"]
+[ext_resource type="Material" uid="uid://dve75elw3otkl" path="res://assets/materials/castle_gravel.tres" id="7_f6lup"]
+[ext_resource type="Material" uid="uid://ddb0u7qx2my3u" path="res://assets/materials/castle_water.tres" id="8_k03bb"]
 
 [node name="MadCastle" type="Node3D"]
 
 [node name="Mesh" parent="." instance=ExtResource("1_kx6x4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="MadCastle" parent="Mesh" index="0"]
+[node name="Island" parent="Mesh" index="0"]
+surface_material_override/0 = ExtResource("7_f6lup")
+surface_material_override/1 = ExtResource("6_jo8eh")
+
+[node name="MadCastle" parent="Mesh/Island" index="0"]
 surface_material_override/0 = ExtResource("2_icd54")
 surface_material_override/1 = ExtResource("3_tsan4")
 surface_material_override/2 = ExtResource("4_inao4")
 surface_material_override/3 = ExtResource("5_yhjmb")
 surface_material_override/4 = ExtResource("6_jo8eh")
+
+[node name="Plateau" parent="Mesh" index="1"]
+surface_material_override/0 = ExtResource("7_f6lup")
+surface_material_override/1 = ExtResource("6_jo8eh")
+
+[node name="Water" parent="Mesh" index="2"]
+surface_material_override/0 = ExtResource("8_k03bb")
 
 [editable path="Mesh"]
