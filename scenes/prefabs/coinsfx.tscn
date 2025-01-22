@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckwv15mrqj50w"]
+
+[ext_resource type="AudioStream" uid="uid://devkbwaqy2tng" path="res://assets/sfx/pickupCoin.ogg" id="1_2mjr3"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_2mjr3")
+autoplay = true

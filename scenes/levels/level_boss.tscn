@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxibtdkvno884"]
+
+[ext_resource type="Script" path="res://scripts/levelManager.gd" id="1_q2iac"]
+[ext_resource type="PackedScene" uid="uid://dha58jrkm3phu" path="res://assets/meshes/levelboss.glb" id="2_x274d"]
+[ext_resource type="Material" uid="uid://bxrf6av2b3mpp" path="res://assets/materials/castle_brick.tres" id="3_7igi6"]
+[ext_resource type="Material" uid="uid://ctc6h7lckd7fk" path="res://assets/materials/castle_eggshell.tres" id="4_ikarv"]
+[ext_resource type="PackedScene" uid="uid://bg65t8ss1t3hg" path="res://assets/meshes/flag.glb" id="4_y3eil"]
+[ext_resource type="Material" uid="uid://bh8o27yttj6jr" path="res://assets/materials/castle_brass.tres" id="6_6h5ff"]
+[ext_resource type="Material" uid="uid://dmwt8t35uou5d" path="res://assets/materials/castle_grass.tres" id="6_yamse"]
+[ext_resource type="PackedScene" uid="uid://qjyyw5171q8f" path="res://scenes/prefabs/level_exit.tscn" id="7_p8bxl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hn2o7"]
+cull_mode = 2
+albedo_color = Color(0.805174, 0.586951, 1, 1)
+
+[node name="Level02" type="Node3D" node_paths=PackedStringArray("PlayerStart")]
+script = ExtResource("1_q2iac")
+PlayerStart = NodePath("PlayerSpawn")
+
+[node name="Mesh" parent="." instance=ExtResource("2_x274d")]
+
+[node name="Ring" parent="Mesh" index="0"]
+surface_material_override/0 = ExtResource("3_7igi6")
+surface_material_override/1 = ExtResource("4_ikarv")
+surface_material_override/2 = ExtResource("6_6h5ff")
+surface_material_override/3 = ExtResource("6_yamse")
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(-0.0934829, 0, 0.995621, 0, 1, 0, -0.995621, 0, -0.0934829, 0, 2.09657, 0)
+
+[node name="LevelExit" parent="." instance=ExtResource("7_p8bxl")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.771, 2.64654, -0.20985)
+visible = false
+
+[node name="Mesh" parent="LevelExit" index="0"]
+visible = false
+
+[node name="Area3D" parent="LevelExit" index="1"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
+
+[node name="flag" parent="LevelExit" instance=ExtResource("4_y3eil")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Flag" parent="LevelExit/flag" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hn2o7")
+
+[editable path="Mesh"]
+[editable path="LevelExit"]
+[editable path="LevelExit/Mesh"]
+[editable path="LevelExit/flag"]

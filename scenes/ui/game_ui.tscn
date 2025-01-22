@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://itoqpn3pfkia" path="res://assets/sprites/ui/hand_right.tres" id="2_cev6u"]
 [ext_resource type="Texture2D" uid="uid://bk7oo4x633gue" path="res://assets/sprites/ui/melee_juice.tres" id="2_vynlg"]
 [ext_resource type="Texture2D" uid="uid://cd0p8jija0aib" path="res://assets/sprites/ui/hand_right_melee.tres" id="4_4d3nu"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/hand_climbing.tres" id="4_u6eii"]
+[ext_resource type="Texture2D" uid="uid://cw3w42hfy4vee" path="res://assets/sprites/ui/hand_climbing.tres" id="4_u6eii"]
 [ext_resource type="Texture2D" uid="uid://ci5cor2t05jgd" path="res://assets/sprites/ui/crosshair.tres" id="6_034r6"]
 [ext_resource type="Script" path="res://scripts/disable_rects.gd" id="6_j3pfd"]
 

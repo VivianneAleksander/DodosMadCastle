@@ -22,38 +22,38 @@ surface_material_override/2 = ExtResource("4_gpws5")
 surface_material_override/3 = ExtResource("5_ejni5")
 
 [node name="PlayerSpawn" type="Node3D" parent="."]
-transform = Transform3D(-0.0934829, 0, 0.995621, 0, 1, 0, -0.995621, 0, -0.0934829, 17.9138, 1.37778, -17.7285)
+transform = Transform3D(-0.0934829, 0, 0.995621, 0, 1, 0, -0.995621, 0, -0.0934829, 8.36718, 1.01806, -11.528)
 
 [node name="LevelExit" parent="." instance=ExtResource("6_4ey17")]
-transform = Transform3D(-0.999093, 0, 0.0425731, 0, 1, 0, -0.0425731, 0, -0.999093, -15.9471, 7.87852, -28.0132)
+transform = Transform3D(-0.999093, 0, 0.0425731, 0, 1, 0, -0.0425731, 0, -0.999093, -8.25763, 4.41987, -16.404)
 
 [node name="FrogSpawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88133, 0, -22.4778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762165, 0, -12.7946)
 
 [node name="FrogEnemy" parent="FrogSpawner" instance=ExtResource("8_wsovv")]
 
 [node name="FrogSpawner2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2339, 11.669, 18.8271)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.13437, 6.01563, 10.1807)
 
 [node name="FrogEnemy" parent="FrogSpawner2" instance=ExtResource("8_wsovv")]
 
 [node name="FrogSpawner3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.50722, 0, 2.53859)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0133, 0, 0.527195)
 
 [node name="FrogEnemy" parent="FrogSpawner3" instance=ExtResource("8_wsovv")]
 
 [node name="FrogSpawner4" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5798, 0, 7.81529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8651, 0, 6.33891)
 
 [node name="FrogEnemy" parent="FrogSpawner4" instance=ExtResource("8_wsovv")]
 
 [node name="FrogSpawner5" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6305, -1.90735e-06, 10.9342)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.54612, -1.43051e-06, 3.93787)
 
 [node name="FrogEnemy" parent="FrogSpawner5" instance=ExtResource("8_wsovv")]
 
 [node name="FrogSpawner6" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1661, 7.21965, -14.9281)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36382, 4.20511, -9.33052)
 
 [node name="FrogEnemy" parent="FrogSpawner6" instance=ExtResource("8_wsovv")]
 

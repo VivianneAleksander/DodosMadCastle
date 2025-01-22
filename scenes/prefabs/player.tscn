@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c5un4m5w64ltw"]
+[gd_scene load_steps=57 format=3 uid="uid://c5un4m5w64ltw"]
 
 [ext_resource type="Script" path="res://scripts/player_control/player_control.gd" id="1_b55ex"]
 [ext_resource type="Script" path="res://scripts/player_control/camera_control.gd" id="2_x8j0q"]
@@ -29,7 +29,7 @@
 [sub_resource type="Resource" id="Resource_bvqsy"]
 script = ExtResource("6_4r1jg")
 direction = Vector3(0, 0, -1)
-velocity = 10.0
+velocity = 20.0
 damage = 1
 alliance = 0
 piercing = 0
@@ -167,11 +167,25 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.86667),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"reload_level"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.86667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"revive"
 }]
 }
 
@@ -310,19 +324,24 @@ advance_condition = &"death"
 advance_mode = 2
 advance_condition = &"death"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2y37u"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qxrgo"]
+states/Start/position = Vector2(117, -42)
 states/death/node = SubResource("AnimationNodeAnimation_rx6rk")
-states/death/position = Vector2(574, 105)
+states/death/position = Vector2(744, 36)
 states/fire/node = SubResource("AnimationNodeAnimation_c700c")
 states/fire/position = Vector2(289, 228)
 states/idle/node = SubResource("AnimationNodeAnimation_axrpu")
-states/idle/position = Vector2(337, 114)
+states/idle/position = Vector2(352, -64)
 states/parry/node = SubResource("AnimationNodeAnimation_d2uyg")
 states/parry/position = Vector2(471, 44)
 states/walk/node = SubResource("AnimationNodeAnimation_3ubn5")
 states/walk/position = Vector2(488, 258)
-transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_2recs"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_4b43m"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_o6hhj"), "walk", "parry", SubResource("AnimationNodeStateMachineTransition_cfl6g"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_tef5f"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_xhwal"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_n8jah"), "walk", "fire", SubResource("AnimationNodeStateMachineTransition_f0bvq"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_krcxt"), "parry", "death", SubResource("AnimationNodeStateMachineTransition_03yfl"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_1ljgl"), "fire", "death", SubResource("AnimationNodeStateMachineTransition_w4dcf"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_h7ja8")]
-graph_offset = Vector2(-57, 28)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_2recs"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_4b43m"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_o6hhj"), "walk", "parry", SubResource("AnimationNodeStateMachineTransition_cfl6g"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_tef5f"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_xhwal"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_n8jah"), "walk", "fire", SubResource("AnimationNodeStateMachineTransition_f0bvq"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_krcxt"), "parry", "death", SubResource("AnimationNodeStateMachineTransition_03yfl"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_1ljgl"), "fire", "death", SubResource("AnimationNodeStateMachineTransition_w4dcf"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_h7ja8"), "death", "idle", SubResource("AnimationNodeStateMachineTransition_2y37u")]
+graph_offset = Vector2(0, -97)
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_b55ex")
@@ -443,11 +462,14 @@ autoplay = true
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("23_rxl5y")
-max_health = 3
+max_health = 6
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("25_sy6f4")
 
+[connection signal="s_revive" from="." to="HealthComponent" method="reset"]
+[connection signal="s_revive" from="." to="CameraContainer/Camera3D" method="_set_enabled" binds= [true]]
+[connection signal="s_revive" from="." to="AnimationValuesManager/Death" method="_set_value" binds= [false]]
 [connection signal="s_fire" from="CameraContainer/Camera3D/GameUI" to="CameraContainer/Camera3D/BulletSpawner" method="spawn_bullet"]
 [connection signal="s_parryStart" from="CameraContainer/Camera3D/GameUI" to="." method="_on_game_ui_s_parry_start"]
 [connection signal="s_parryStop" from="CameraContainer/Camera3D/GameUI" to="." method="_on_game_ui_s_parry_stop"]

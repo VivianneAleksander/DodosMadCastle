@@ -43,3 +43,6 @@ func set_invincible(time : float) -> void:
 
 	invincible_timer = time
 	invincible = true
+
+func reset():
+	adjust_health(1000000)

@@ -41,11 +41,11 @@ func _physics_process(delta: float) -> void:
 
 func set_death_state(value : bool) -> void:
 	death_state = value
-	$PhysicsCollisionShape3D.disabled = true
-	$Hitbox.monitorable = false
-	$Hitbox.monitoring = false
-	$BubbleBox.monitorable = true
-	$BubbleBox.monitoring = true
+	$PhysicsCollisionShape3D.set_deferred("disabled", true)
+	$Hitbox.set_deferred("monitorable", true)
+	$Hitbox.set_deferred("monitoring", true)
+	$BubbleBox.set_deferred("monitorable", true)
+	$BubbleBox.set_deferred("monitoring", true)
 	
 func pop_bubble():
 	queue_free()

@@ -17,6 +17,8 @@ var airTimer : float
 var inParry : bool
 var manager : gameManager
 
+signal s_revive
+
 func start_game(man):
 	playerVelocity = Vector3.ZERO
 	inParry = false
@@ -99,3 +101,6 @@ func _on_game_ui_s_parry_start():
 	
 func _on_game_ui_s_parry_stop():
 	inParry = false
+
+func revive():
+	s_revive.emit()
