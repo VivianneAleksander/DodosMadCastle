@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1dn4kgasufbx"]
+[gd_scene load_steps=23 format=3 uid="uid://d1dn4kgasufbx"]
 
 [ext_resource type="PackedScene" uid="uid://c5luwnouieqoe" path="res://scenes/prefabs/enemy_base.tscn" id="1_cdou1"]
 [ext_resource type="PackedScene" uid="uid://dhpkthi7kwu0c" path="res://scenes/prefabs/frog_mesh.tscn" id="1_ronxo"]
@@ -32,6 +32,9 @@ velocity = 10.0
 damage = 1
 alliance = 1
 piercing = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vtsnc"]
+radius = 1.5
 
 [node name="FrogEnemy" instance=ExtResource("1_cdou1")]
 
@@ -84,7 +87,11 @@ sounds = Array[AudioStreamOggVorbis]([ExtResource("14_pq23p"), ExtResource("15_f
 wait_time = 3.0
 autostart = true
 
-[node name="BubbleMesh" parent="." index="7"]
+[node name="CollisionShape3D" parent="BubbleBox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1831, 0)
+shape = SubResource("SphereShape3D_vtsnc")
+
+[node name="BubbleMesh" parent="." index="8"]
 transform = Transform3D(6.435, 0, 0, 0, 6.435, 0, 0, 0, 6.435, 0, 1.05436, 0)
 
 [connection signal="s_fire" from="FrogMesh" to="BulletSpawner" method="spawn_bullet"]

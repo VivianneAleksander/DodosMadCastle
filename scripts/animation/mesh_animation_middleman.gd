@@ -5,6 +5,8 @@ class_name MeshAnimationMiddleman
 var property_path : String = "parameters/conditions/"
 
 signal s_fire
+signal s_parryStart
+signal s_parryStop
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,3 +32,9 @@ func _set_value(property : String, new_value) -> void:
 
 func fire() -> void:
 	s_fire.emit()
+	
+func parry_start() -> void:
+	s_parryStart.emit()
+	
+func parry_stop() -> void:
+	s_parryStop.emit()

@@ -157,6 +157,10 @@ tracks/11/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_u22wl"]
+resource_name = "death"
+length = 0.5
+
 [sub_resource type="Animation" id="Animation_bgrog"]
 resource_name = "fire"
 length = 0.1667
@@ -351,6 +355,23 @@ tracks/8/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"parry_start"
+}, {
+"args": [],
+"method": &"parry_stop"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_t1n5x"]
 resource_name = "walk"
@@ -368,10 +389,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_u22wl"]
-resource_name = "death"
-length = 0.5
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x5tke"]
 _data = {
@@ -463,7 +480,7 @@ states/parry/position = Vector2(553, 29)
 states/walk/node = SubResource("AnimationNodeAnimation_u8dea")
 states/walk/position = Vector2(540, 152)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ma3t5"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_d537e"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_al65a"), "walk", "parry", SubResource("AnimationNodeStateMachineTransition_tkc5n"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_od6y8"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_s6mk8"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_hfv2u"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_0h1to"), "walk", "fire", SubResource("AnimationNodeStateMachineTransition_iwksu"), "parry", "death", SubResource("AnimationNodeStateMachineTransition_vnd1m"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_op6tq"), "fire", "death", SubResource("AnimationNodeStateMachineTransition_vjwwm"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_evhbx")]
-graph_offset = Vector2(147, 16)
+graph_offset = Vector2(-39, -50)
 
 [sub_resource type="Shader" id="Shader_mg430"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
@@ -482,6 +499,33 @@ void fragment(){
 shader = SubResource("Shader_mg430")
 shader_parameter/radius = 3.98
 shader_parameter/alpha = 0.405
+
+[sub_resource type="Animation" id="Animation_1lxtb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtEffect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtEffect:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.405]
+}
 
 [sub_resource type="Animation" id="Animation_pgwio"]
 resource_name = "hurt"
@@ -509,33 +553,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.405, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_1lxtb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HurtEffect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HurtEffect:material:shader_parameter/alpha")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.405]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3l62u"]
@@ -566,9 +583,9 @@ anchor_top = -0.0462963
 anchor_right = 0.699653
 anchor_bottom = 0.563272
 offset_left = -0.000152588
-offset_top = 113.0
+offset_top = 3.24249e-05
 offset_right = -0.000183105
-offset_bottom = 113.0
+offset_bottom = 3.05176e-05
 texture = ExtResource("2_vynlg")
 expand_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -578,6 +595,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -650.0
+offset_top = -392.0
+offset_right = -650.0
+offset_bottom = -392.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -599,10 +620,10 @@ anchor_left = 0.730903
 anchor_top = 0.314815
 anchor_right = 1.03993
 anchor_bottom = 1.3426
-offset_left = 0.000244141
-offset_top = -0.000152588
-offset_right = 0.000244141
-offset_bottom = -6.10352e-05
+offset_left = -388.0
+offset_top = 201.0
+offset_right = -388.0
+offset_bottom = 201.0
 texture = ExtResource("2_cev6u")
 expand_mode = 3
 metadata/_edit_use_anchors_ = true

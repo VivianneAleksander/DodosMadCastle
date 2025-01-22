@@ -58,3 +58,6 @@ func deal_damage(area : Area3D):
 		pierced += 1
 	if pierced >= piercing:
 		queue_free()
+		
+func bounce():
+	velocity = -velocity

@@ -1,14 +1,17 @@
 extends CharacterBody3D
-
+class_name EnemyBase
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const FLOAT_SPEED = 10.0
+const FLOAT_SPEED = 0.5
+const PUSH_SPEED = 5.0
+const BUBBLE_DRAG = 0.25
 
 @onready var health_component : HealthComponent = $HealthComponent
 
 var influences : Array[Vector3]
 var death_state : bool = false
+var enemyVel : Vector3
 
 func _physics_process(delta: float) -> void:
 	if death_state:
@@ -38,7 +41,22 @@ func _physics_process(delta: float) -> void:
 
 func set_death_state(value : bool) -> void:
 	death_state = value
+	$PhysicsCollisionShape3D.disabled = true
+	$Hitbox.monitorable = false
+	$Hitbox.monitoring = false
+	$BubbleBox.monitorable = true
+	$BubbleBox.monitoring = true
+	
+func pop_bubble():
+	queue_free()
+
+func push_bubble(dir):
+	enemyVel += dir * PUSH_SPEED
+	enemyVel.y += FLOAT_SPEED
 
 func _perform_death(_delta : float):
-	velocity = Vector3.UP * _delta * FLOAT_SPEED
+	enemyVel.y = move_toward(enemyVel.y, FLOAT_SPEED, _delta * BUBBLE_DRAG)
+	enemyVel.x = move_toward(enemyVel.x, 0, _delta * BUBBLE_DRAG)
+	enemyVel.z = move_toward(enemyVel.z, 0, _delta * BUBBLE_DRAG)
+	velocity = enemyVel
 	move_and_slide()
