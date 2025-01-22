@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dndyjg2m23vce"]
+[gd_scene load_steps=48 format=3 uid="uid://dndyjg2m23vce"]
 
 [ext_resource type="PackedScene" uid="uid://bx7fgspfykjwy" path="res://scenes/ui/heart.tscn" id="1_57u7d"]
 [ext_resource type="Script" path="res://scripts/player_control/game_ui.gd" id="1_iwdav"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://itoqpn3pfkia" path="res://assets/sprites/ui/hand_right.tres" id="2_cev6u"]
 [ext_resource type="Texture2D" uid="uid://bk7oo4x633gue" path="res://assets/sprites/ui/melee_juice.tres" id="2_vynlg"]
 [ext_resource type="Texture2D" uid="uid://cd0p8jija0aib" path="res://assets/sprites/ui/hand_right_melee.tres" id="4_4d3nu"]
+[ext_resource type="Texture2D" uid="uid://cw3w42hfy4vee" path="res://assets/sprites/ui/hand_climbing.tres" id="4_u6eii"]
 [ext_resource type="Texture2D" uid="uid://ci5cor2t05jgd" path="res://assets/sprites/ui/crosshair.tres" id="6_034r6"]
 [ext_resource type="Script" path="res://scripts/disable_rects.gd" id="6_j3pfd"]
 
@@ -155,6 +156,30 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("HandsControl/HandLeftClimbing:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("HandsControl/HandRightClimbing:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_u22wl"]
@@ -390,15 +415,83 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_4k08r"]
+resource_name = "climb"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandsControl/HandRightClimbing:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandsControl/HandLeftClimbing:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandsControl/HandRight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandsControl/HandLeft:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HandsControl:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1.27456, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 428)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x5tke"]
 _data = {
 "RESET": SubResource("Animation_2vsqs"),
+"climb": SubResource("Animation_4k08r"),
 "death": SubResource("Animation_u22wl"),
 "fire": SubResource("Animation_bgrog"),
 "idle": SubResource("Animation_qyf2e"),
 "parry": SubResource("Animation_k7asr"),
 "walk": SubResource("Animation_t1n5x")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tht0e"]
+animation = &"climb"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sei3i"]
 animation = &"death"
@@ -468,19 +561,38 @@ advance_condition = &"death"
 advance_mode = 2
 advance_condition = &"death"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r4fsm"]
+advance_mode = 2
+advance_condition = &"climbing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ewe3"]
+advance_mode = 2
+advance_condition = &"not_climbing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ny38"]
+advance_mode = 2
+advance_condition = &"climbing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aoqnl"]
+advance_mode = 2
+advance_condition = &"death"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_87u8k"]
+states/Start/position = Vector2(205, -4)
+states/climb/node = SubResource("AnimationNodeAnimation_tht0e")
+states/climb/position = Vector2(269, 233)
 states/death/node = SubResource("AnimationNodeAnimation_sei3i")
 states/death/position = Vector2(762, 121)
 states/fire/node = SubResource("AnimationNodeAnimation_w6ftb")
-states/fire/position = Vector2(385, 246)
+states/fire/position = Vector2(440, 267)
 states/idle/node = SubResource("AnimationNodeAnimation_cijs6")
 states/idle/position = Vector2(397, 63)
 states/parry/node = SubResource("AnimationNodeAnimation_benw4")
 states/parry/position = Vector2(553, 29)
 states/walk/node = SubResource("AnimationNodeAnimation_u8dea")
 states/walk/position = Vector2(540, 152)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ma3t5"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_d537e"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_al65a"), "walk", "parry", SubResource("AnimationNodeStateMachineTransition_tkc5n"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_od6y8"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_s6mk8"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_hfv2u"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_0h1to"), "walk", "fire", SubResource("AnimationNodeStateMachineTransition_iwksu"), "parry", "death", SubResource("AnimationNodeStateMachineTransition_vnd1m"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_op6tq"), "fire", "death", SubResource("AnimationNodeStateMachineTransition_vjwwm"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_evhbx")]
-graph_offset = Vector2(-39, -50)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ma3t5"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_d537e"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_al65a"), "walk", "parry", SubResource("AnimationNodeStateMachineTransition_tkc5n"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_od6y8"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_s6mk8"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_hfv2u"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_0h1to"), "walk", "fire", SubResource("AnimationNodeStateMachineTransition_iwksu"), "parry", "death", SubResource("AnimationNodeStateMachineTransition_vnd1m"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_op6tq"), "fire", "death", SubResource("AnimationNodeStateMachineTransition_vjwwm"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_evhbx"), "idle", "climb", SubResource("AnimationNodeStateMachineTransition_r4fsm"), "climb", "idle", SubResource("AnimationNodeStateMachineTransition_5ewe3"), "walk", "climb", SubResource("AnimationNodeStateMachineTransition_4ny38"), "climb", "death", SubResource("AnimationNodeStateMachineTransition_aoqnl")]
+graph_offset = Vector2(117, 67)
 
 [sub_resource type="Shader" id="Shader_mg430"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
@@ -583,9 +695,9 @@ anchor_top = -0.0462963
 anchor_right = 0.699653
 anchor_bottom = 0.563272
 offset_left = -0.000152588
-offset_top = 3.24249e-05
+offset_top = 113.0
 offset_right = -0.000183105
-offset_bottom = 3.05176e-05
+offset_bottom = 113.0
 texture = ExtResource("2_vynlg")
 expand_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -595,10 +707,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -650.0
-offset_top = -392.0
-offset_right = -650.0
-offset_bottom = -392.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -613,6 +721,31 @@ texture = ExtResource("1_j4rvx")
 expand_mode = 3
 metadata/_edit_use_anchors_ = true
 
+[node name="HandLeftClimbing" type="TextureRect" parent="HandsControl"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.579861
+anchor_top = 0.307099
+anchor_right = 0.897569
+anchor_bottom = 1.10648
+texture = ExtResource("4_u6eii")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="HandRightClimbing" type="TextureRect" parent="HandsControl"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.115451
+anchor_top = 0.307099
+anchor_right = 0.43316
+anchor_bottom = 1.10648
+texture = ExtResource("4_u6eii")
+expand_mode = 3
+flip_h = true
+metadata/_edit_use_anchors_ = true
+
 [node name="HandRight" type="TextureRect" parent="HandsControl"]
 layout_mode = 1
 anchors_preset = -1
@@ -620,10 +753,10 @@ anchor_left = 0.730903
 anchor_top = 0.314815
 anchor_right = 1.03993
 anchor_bottom = 1.3426
-offset_left = -388.0
-offset_top = 201.0
-offset_right = -388.0
-offset_bottom = 201.0
+offset_left = -0.000305176
+offset_top = -0.00012207
+offset_right = -0.000366211
+offset_bottom = -6.10352e-05
 texture = ExtResource("2_cev6u")
 expand_mode = 3
 metadata/_edit_use_anchors_ = true
@@ -773,8 +906,10 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_87u8k")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/climbing = false
 parameters/conditions/death = false
 parameters/conditions/firing = false
+parameters/conditions/not_climbing = false
 parameters/conditions/not_firing = false
 parameters/conditions/not_walking = false
 parameters/conditions/parry = false
