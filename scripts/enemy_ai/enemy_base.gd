@@ -5,7 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const FLOAT_SPEED = 0.5
 const PUSH_SPEED = 5.0
-const BUBBLE_DRAG = 0.25
+const BUBBLE_DRAG = 0.35
 
 @onready var health_component : HealthComponent = $HealthComponent
 
@@ -52,7 +52,6 @@ func pop_bubble():
 
 func push_bubble(dir):
 	enemyVel += dir * PUSH_SPEED
-	enemyVel.y += FLOAT_SPEED
 
 func _perform_death(_delta : float):
 	enemyVel.y = move_toward(enemyVel.y, FLOAT_SPEED, _delta * BUBBLE_DRAG)

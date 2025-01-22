@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://34ksgjw5cstv"]
+[gd_scene load_steps=5 format=3 uid="uid://34ksgjw5cstv"]
 
 [ext_resource type="PackedScene" uid="uid://bhqh5qokbfvtm" path="res://scenes/prefabs/test_level_geo.tscn" id="1_73gam"]
+[ext_resource type="Script" path="res://scripts/levelManager.gd" id="1_wfhxa"]
+[ext_resource type="PackedScene" uid="uid://qjyyw5171q8f" path="res://scenes/prefabs/level_exit.tscn" id="2_fhpjl"]
 [ext_resource type="PackedScene" uid="uid://d1dn4kgasufbx" path="res://scenes/prefabs/frog_enemy.tscn" id="2_k0283"]
 
-[node name="Level01" type="Node3D"]
+[node name="Level01" type="Node3D" node_paths=PackedStringArray("PlayerStart")]
+script = ExtResource("1_wfhxa")
+PlayerStart = NodePath("PlayerSpawn")
+
+[node name="LevelExit" parent="." instance=ExtResource("2_fhpjl")]
+transform = Transform3D(-0.999999, 0, -0.00101235, 0, 1, 0, 0.00101235, 0, -0.999999, 6.46998, 3.39524, -2.699)
 
 [node name="TestLevelGeo" parent="." instance=ExtResource("1_73gam")]
 
 [node name="FrogEnemy" parent="." instance=ExtResource("2_k0283")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.697003, 0, 0)
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(-0.659005, 0, 0.752139, 0, 1, 0, -0.752139, 0, -0.659005, 8.6665, 1.10397, -8.5421)

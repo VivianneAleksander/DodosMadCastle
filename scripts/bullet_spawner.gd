@@ -12,4 +12,5 @@ func spawn_bullet() -> BulletBase:
 	var new_bullet : BulletBase = bullet_prefab.instantiate() as BulletBase
 	get_tree().root.add_child(new_bullet)
 	new_bullet.factory(temp_args)
+	new_bullet.global_position = global_position
 	return new_bullet

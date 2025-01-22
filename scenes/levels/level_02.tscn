@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8iq0i6l1x8q"]
+[gd_scene load_steps=9 format=3 uid="uid://c8iq0i6l1x8q"]
 
+[ext_resource type="Script" path="res://scripts/levelManager.gd" id="1_7cr2s"]
 [ext_resource type="PackedScene" uid="uid://d3rffnaejbnxs" path="res://assets/meshes/level01.glb" id="1_ti6ps"]
 [ext_resource type="Material" uid="uid://bxrf6av2b3mpp" path="res://assets/materials/castle_brick.tres" id="2_st54j"]
 [ext_resource type="Material" uid="uid://ctc6h7lckd7fk" path="res://assets/materials/castle_eggshell.tres" id="3_8e565"]
 [ext_resource type="Material" uid="uid://cvnc0ho5pcwrr" path="res://assets/materials/castle_shingles.tres" id="4_gpws5"]
 [ext_resource type="Material" uid="uid://bh8o27yttj6jr" path="res://assets/materials/castle_brass.tres" id="5_ejni5"]
-[ext_resource type="PackedScene" uid="uid://c0n67ir2hm455" path="res://scenes/prefabs/level_exit.tscn" id="6_4ey17"]
+[ext_resource type="PackedScene" uid="uid://qjyyw5171q8f" path="res://scenes/prefabs/level_exit.tscn" id="6_4ey17"]
+[ext_resource type="PackedScene" uid="uid://d1dn4kgasufbx" path="res://scenes/prefabs/frog_enemy.tscn" id="8_wsovv"]
 
-[node name="Level02" type="Node3D"]
+[node name="Level02" type="Node3D" node_paths=PackedStringArray("PlayerStart")]
+script = ExtResource("1_7cr2s")
+PlayerStart = NodePath("PlayerSpawn")
 
 [node name="Mesh" parent="." instance=ExtResource("1_ti6ps")]
 
@@ -18,7 +22,7 @@ surface_material_override/2 = ExtResource("4_gpws5")
 surface_material_override/3 = ExtResource("5_ejni5")
 
 [node name="PlayerSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0393, 0, -19.5918)
+transform = Transform3D(-0.0934829, 0, 0.995621, 0, 1, 0, -0.995621, 0, -0.0934829, 17.9138, 1.37778, -17.7285)
 
 [node name="LevelExit" parent="." instance=ExtResource("6_4ey17")]
 transform = Transform3D(-0.999093, 0, 0.0425731, 0, 1, 0, -0.0425731, 0, -0.999093, -15.9471, 7.87852, -28.0132)
@@ -26,19 +30,31 @@ transform = Transform3D(-0.999093, 0, 0.0425731, 0, 1, 0, -0.0425731, 0, -0.9990
 [node name="FrogSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88133, 0, -22.4778)
 
+[node name="FrogEnemy" parent="FrogSpawner" instance=ExtResource("8_wsovv")]
+
 [node name="FrogSpawner2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2339, 11.669, 18.8271)
+
+[node name="FrogEnemy" parent="FrogSpawner2" instance=ExtResource("8_wsovv")]
 
 [node name="FrogSpawner3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.50722, 0, 2.53859)
 
+[node name="FrogEnemy" parent="FrogSpawner3" instance=ExtResource("8_wsovv")]
+
 [node name="FrogSpawner4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5798, 0, 7.81529)
+
+[node name="FrogEnemy" parent="FrogSpawner4" instance=ExtResource("8_wsovv")]
 
 [node name="FrogSpawner5" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6305, -1.90735e-06, 10.9342)
 
+[node name="FrogEnemy" parent="FrogSpawner5" instance=ExtResource("8_wsovv")]
+
 [node name="FrogSpawner6" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1661, 7.21965, -14.9281)
+
+[node name="FrogEnemy" parent="FrogSpawner6" instance=ExtResource("8_wsovv")]
 
 [editable path="Mesh"]

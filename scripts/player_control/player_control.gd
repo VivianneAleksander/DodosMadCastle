@@ -87,10 +87,10 @@ func _on_game_ui_s_parry_start():
 	if enemy.death_state == true:
 		var midpoint = lerp(enemy.global_position, global_position, 0.5)
 		global_position = midpoint
-		playerVelocity += (transform.basis * Vector3.FORWARD) * DASH_VELOCITY
-		bounce()
-		var fwd = $CameraContainer/Camera3D.transform.basis* Vector3.FORWARD
+		var fwd = transform.basis * Vector3.FORWARD
+		playerVelocity += fwd * DASH_VELOCITY
 		enemy.push_bubble(fwd)
+		bounce()
 	
 func _on_game_ui_s_parry_stop():
 	inParry = false
