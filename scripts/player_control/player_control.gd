@@ -23,6 +23,7 @@ func start_game(man):
 	playerVelocity = Vector3.ZERO
 	inParry = false
 	manager = man
+	$CameraContainer/Camera3D/RayCast3D.add_exception($BubbleBox)
 
 func reload_level():
 	manager.reload_level()
@@ -92,7 +93,7 @@ func _on_game_ui_s_parry_start():
 	if !enemy:
 		return
 	if enemy.death_state == true:
-		var midpoint = lerp(enemy.global_position, global_position, 0.5)
+		var midpoint = lerp(collider.global_position, global_position, 0.5)
 		global_position = midpoint
 		var fwd = transform.basis * Vector3.FORWARD
 		playerVelocity += fwd * DASH_VELOCITY

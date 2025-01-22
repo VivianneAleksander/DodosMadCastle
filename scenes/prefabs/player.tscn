@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://c5un4m5w64ltw"]
+[gd_scene load_steps=58 format=3 uid="uid://c5un4m5w64ltw"]
 
 [ext_resource type="Script" path="res://scripts/player_control/player_control.gd" id="1_b55ex"]
 [ext_resource type="Script" path="res://scripts/player_control/camera_control.gd" id="2_x8j0q"]
@@ -343,6 +343,9 @@ states/walk/position = Vector2(488, 258)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_2recs"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_4b43m"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_o6hhj"), "walk", "parry", SubResource("AnimationNodeStateMachineTransition_cfl6g"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_tef5f"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_xhwal"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_n8jah"), "walk", "fire", SubResource("AnimationNodeStateMachineTransition_f0bvq"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_krcxt"), "parry", "death", SubResource("AnimationNodeStateMachineTransition_03yfl"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_1ljgl"), "fire", "death", SubResource("AnimationNodeStateMachineTransition_w4dcf"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_h7ja8"), "death", "idle", SubResource("AnimationNodeStateMachineTransition_2y37u")]
 graph_offset = Vector2(0, -97)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_nuqt6"]
+radius = 1.499
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_b55ex")
 
@@ -466,6 +469,13 @@ max_health = 6
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("25_sy6f4")
+
+[node name="BubbleBox" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BubbleBox"]
+shape = SubResource("SphereShape3D_nuqt6")
 
 [connection signal="s_revive" from="." to="HealthComponent" method="reset"]
 [connection signal="s_revive" from="." to="CameraContainer/Camera3D" method="_set_enabled" binds= [true]]

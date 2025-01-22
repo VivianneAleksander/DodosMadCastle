@@ -56,32 +56,35 @@ autostart = true
 wait_time = 0.1
 one_shot = true
 
-[node name="BulletSpawner" type="Node3D" parent="." index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.331, 0)
+[node name="Node3D" type="Node3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+
+[node name="BulletSpawner" type="Node3D" parent="Node3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.208)
 script = ExtResource("3_gveq5")
 bullet_prefab = ExtResource("4_8sc1p")
 args = SubResource("Resource_sf64p")
 
-[node name="LookAtPlayer" type="Node" parent="BulletSpawner" index="0"]
-script = ExtResource("6_6ljbb")
-
-[node name="Gurps" type="AudioStreamPlayer3D" parent="BulletSpawner" index="1"]
+[node name="Gurps" type="AudioStreamPlayer3D" parent="Node3D/BulletSpawner" index="0"]
 stream = ExtResource("7_ap7i1")
 script = ExtResource("7_fdd15")
 play_random = true
 sounds = Array[AudioStreamOggVorbis]([ExtResource("9_4obje"), ExtResource("10_rs4ws"), ExtResource("11_dq1x2"), ExtResource("7_ap7i1")])
 
-[node name="Gargles" type="AudioStreamPlayer3D" parent="BulletSpawner" index="2"]
+[node name="Gargles" type="AudioStreamPlayer3D" parent="Node3D/BulletSpawner" index="1"]
 stream = ExtResource("12_huyab")
 script = ExtResource("7_fdd15")
 play_random = true
 sounds = Array[AudioStreamOggVorbis]([ExtResource("13_htwav"), ExtResource("12_huyab")])
 
-[node name="Poots" type="AudioStreamPlayer3D" parent="BulletSpawner" index="3"]
+[node name="Poots" type="AudioStreamPlayer3D" parent="Node3D/BulletSpawner" index="2"]
 stream = ExtResource("14_pq23p")
 script = ExtResource("7_fdd15")
 play_random = true
 sounds = Array[AudioStreamOggVorbis]([ExtResource("14_pq23p"), ExtResource("15_fr3sy"), ExtResource("16_qm42w"), ExtResource("17_aa8s2"), ExtResource("18_lyre6")])
+
+[node name="LookAtPlayer" type="Node" parent="Node3D" index="1"]
+script = ExtResource("6_6ljbb")
 
 [node name="GurpTimer" type="Timer" parent="." index="6"]
 wait_time = 3.0
@@ -94,13 +97,13 @@ shape = SubResource("SphereShape3D_vtsnc")
 [node name="BubbleMesh" parent="." index="8"]
 transform = Transform3D(6.435, 0, 0, 0, 6.435, 0, 0, 0, 6.435, 0, 1.05436, 0)
 
-[connection signal="s_fire" from="FrogMesh" to="BulletSpawner" method="spawn_bullet"]
-[connection signal="s_fire" from="FrogMesh" to="BulletSpawner/Gargles" method="play_random_from_list"]
-[connection signal="s_fire" from="FrogMesh" to="BulletSpawner/Poots" method="play_random_from_list"]
+[connection signal="s_fire" from="FrogMesh" to="Node3D/BulletSpawner" method="spawn_bullet"]
+[connection signal="s_fire" from="FrogMesh" to="Node3D/BulletSpawner/Gargles" method="play_random_from_list"]
+[connection signal="s_fire" from="FrogMesh" to="Node3D/BulletSpawner/Poots" method="play_random_from_list"]
 [connection signal="timeout" from="FireTimer" to="UnfireTimer" method="start"]
 [connection signal="timeout" from="FireTimer" to="FrogMesh" method="_set_value" binds= ["fire", true]]
 [connection signal="timeout" from="UnfireTimer" to="FrogMesh" method="_set_value" flags=3 binds= ["fire", false]]
-[connection signal="timeout" from="GurpTimer" to="BulletSpawner/Gurps" method="play_random_from_list"]
+[connection signal="timeout" from="GurpTimer" to="Node3D/BulletSpawner/Gurps" method="play_random_from_list"]
 [connection signal="death" from="HealthComponent" to="FireTimer" method="stop"]
 [connection signal="death" from="HealthComponent" to="GurpTimer" method="stop"]
 [connection signal="death" from="HealthComponent" to="FrogMesh" method="_set_active" binds= [false]]

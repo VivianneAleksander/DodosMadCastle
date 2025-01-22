@@ -23,7 +23,7 @@ func _process(delta):
 	else:
 		invincible_timer -= delta
 
-func adjust_health(value : int):
+func adjust_health(value : int = -1):
 	if value == 0: return
 	if value < 0 and invincible: return
 

@@ -10,10 +10,17 @@ const BUBBLE_DRAG = 0.35
 @onready var health_component : HealthComponent = $HealthComponent
 
 var influences : Array[Vector3]
-var death_state : bool = false
+@export var death_state : bool = false
 var enemyVel : Vector3
+@export var pushable : bool = true
+@export var should_move : bool = true
+
+func _ready() -> void:
+	set_death_state(death_state)
 
 func _physics_process(delta: float) -> void:
+	if not should_move: return
+	
 	if death_state:
 		_perform_death(delta)
 		return
@@ -41,6 +48,7 @@ func _physics_process(delta: float) -> void:
 
 func set_death_state(value : bool) -> void:
 	death_state = value
+	if not death_state: return
 	if $PhysicsCollisionShape3D:
 		$PhysicsCollisionShape3D.set_deferred("disabled", true)
 	if $Hitbox:
@@ -54,6 +62,7 @@ func pop_bubble():
 	queue_free()
 
 func push_bubble(dir):
+	if not pushable: return
 	enemyVel += dir * PUSH_SPEED
 
 func _perform_death(_delta : float):

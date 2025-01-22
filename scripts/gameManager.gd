@@ -23,7 +23,9 @@ func load_next_level():
 	if loaded_level:
 		loaded_level.queue_free()
 	index += 1
-	if index > Levels.size():
+	if index >= Levels.size():
+		$AnimationPlayer.play("end_screen")
+		$Player.set_process(false)
 		return
 	
 	prep_level()
@@ -35,3 +37,9 @@ func prep_level():
 	loaded_level.start_level(self)
 	Player.global_position = loaded_level.PlayerStart.global_position
 	Player.global_rotation = loaded_level.PlayerStart.global_rotation
+
+
+func game_reset():
+	get_tree().change_scene_to_file("res://scenes/prefabs/main_menu.tscn")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	queue_free()

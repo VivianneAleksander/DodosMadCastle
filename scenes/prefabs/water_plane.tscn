@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfbnkufryuqga"]
+
+[ext_resource type="Material" uid="uid://ddb0u7qx2my3u" path="res://assets/materials/castle_water.tres" id="1_1jw4p"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rubvt"]
+size = Vector2(500, 500)
+subdivide_width = 16
+subdivide_depth = 16
+
+[node name="WaterPlane" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.09785, 0)
+mesh = SubResource("PlaneMesh_rubvt")
+surface_material_override/0 = ExtResource("1_1jw4p")

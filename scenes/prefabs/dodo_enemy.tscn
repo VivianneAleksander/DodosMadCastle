@@ -1,22 +1,31 @@
-[gd_scene load_steps=27 format=3 uid="uid://jc2q6ep3mrc7"]
+[gd_scene load_steps=34 format=3 uid="uid://cphwr1bvrm685"]
 
 [ext_resource type="PackedScene" uid="uid://5via0dn1sb7c" path="res://scenes/prefabs/dodo_mesh.tscn" id="1_l4ejr"]
+[ext_resource type="PackedScene" uid="uid://c5luwnouieqoe" path="res://scenes/prefabs/enemy_base.tscn" id="1_spr1o"]
 [ext_resource type="Script" path="res://scripts/bullet_spawner.gd" id="2_1mdbr"]
 [ext_resource type="PackedScene" uid="uid://bb8lx2m6abjd" path="res://scenes/prefabs/egg_bullet.tscn" id="3_nk8a1"]
 [ext_resource type="Script" path="res://scripts/bullet_args.gd" id="4_ebilr"]
 [ext_resource type="Script" path="res://scripts/enemy_ai/look_at_player.gd" id="5_c3wqd"]
-[ext_resource type="Script" path="res://scripts/health_component.gd" id="7_sdmmh"]
+[ext_resource type="Script" path="res://scripts/audio_randomizer.gd" id="7_afktb"]
+[ext_resource type="AudioStream" uid="uid://1dksqqtuqbv2" path="res://assets/sfx/dodo01.ogg" id="8_r6sqp"]
+[ext_resource type="AudioStream" uid="uid://dt2v4fn23vwsy" path="res://assets/sfx/dodo02.ogg" id="9_xbotr"]
+[ext_resource type="AudioStream" uid="uid://boua5ol8rax0h" path="res://assets/sfx/dodo03.ogg" id="10_uant7"]
+[ext_resource type="AudioStream" uid="uid://bwbdt5ch31qpg" path="res://assets/sfx/dodo04.ogg" id="11_ndsuu"]
 
-[sub_resource type="Resource" id="Resource_28mfb"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_srxwy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2gh6h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o7g8v"]
+radius = 3.86889
+
+[sub_resource type="Resource" id="Resource_rada6"]
 script = ExtResource("4_ebilr")
 direction = Vector3(0, 0, -1)
 velocity = 10.0
 damage = 1
 alliance = 1
 piercing = 0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_g286k"]
-radius = 3.15016
 
 [sub_resource type="Animation" id="Animation_551va"]
 length = 0.001
@@ -42,7 +51,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(10.3141, 5.46236, 0)]
+"values": [Vector3(9.029, 5, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_hiboc"]
@@ -60,31 +69,31 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshContainer/DodoMesh:position")
+tracks/1/path = NodePath("TimerClusterfuck/Timer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(10.3141, 11.5839, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TimerClusterfuck/Timer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [-1],
 "method": &"start"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshContainer/DodoMesh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(9.02894, 19.4295, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_fg4hs"]
@@ -97,10 +106,10 @@ tracks/0/path = NodePath("MeshContainer/DodoMesh:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1.62451, 1),
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1.68179, 1),
 "update": 0,
-"values": [Vector3(10.3141, 5.46236, 0), Vector3(10.3141, 11.5839, 0)]
+"values": [Vector3(9.029, 5, 0), Vector3(9.02894, 19.4295, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ju1m8"]
@@ -125,10 +134,10 @@ tracks/1/path = NodePath("MeshContainer/DodoMesh:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.8, 2, 2.06667, 3),
-"transitions": PackedFloat32Array(1, 1, 2.07053, 1, 0.466517, 1),
+"times": PackedFloat32Array(0, 0.6, 1.6, 2.4, 2.6, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(10.3141, 11.5839, 0), Vector3(0, 15.825, 0), Vector3(0, 15.825, 0), Vector3(0, 1.8088, 0), Vector3(0, 1.8088, 0), Vector3(10.3141, 11.5839, 0)]
+"values": [Vector3(9.02894, 19.4295, 0), Vector3(9.02894, 19.4295, 0), Vector3(0, 26.627, 0), Vector3(0, 26.627, 0), Vector3(0, 2, 0), Vector3(9.02894, 19.4295, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_x3pol"]
@@ -182,7 +191,7 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bu5my"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tfyvb"]
 states/circle/node = SubResource("AnimationNodeAnimation_is5wu")
 states/circle/position = Vector2(600, 85)
 "states/circle 2/node" = SubResource("AnimationNodeAnimation_r5kmj")
@@ -196,90 +205,118 @@ states/wait/position = Vector2(316, 42)
 transitions = ["wait", "rise", SubResource("AnimationNodeStateMachineTransition_i1jrx"), "rise", "circle", SubResource("AnimationNodeStateMachineTransition_sldes"), "circle", "circle 2", SubResource("AnimationNodeStateMachineTransition_rpltq"), "slam", "circle", SubResource("AnimationNodeStateMachineTransition_y2nf1"), "Start", "wait", SubResource("AnimationNodeStateMachineTransition_yamkd"), "circle 2", "slam", SubResource("AnimationNodeStateMachineTransition_0qqyq")]
 graph_offset = Vector2(50, 28)
 
-[node name="DodoEnemy" type="Node3D"]
+[node name="DodoEnemy" instance=ExtResource("1_spr1o")]
+death_state = true
+pushable = false
+should_move = false
 
-[node name="MeshContainer" type="Node3D" parent="."]
+[node name="PhysicsCollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_srxwy")
 
-[node name="DodoMesh" parent="MeshContainer" instance=ExtResource("1_l4ejr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3141, 5.46236, 0)
+[node name="Hitbox" parent="." index="1"]
+collision_layer = 0
+collision_mask = 1
 
-[node name="BulletSpawner" type="Node3D" parent="MeshContainer/DodoMesh"]
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("SphereShape3D_2gh6h")
+
+[node name="BubbleBox" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.260139, 19.4295, -9.02519)
+
+[node name="CollisionShape3D" parent="BubbleBox" index="0"]
+shape = SubResource("SphereShape3D_o7g8v")
+
+[node name="HealthComponent" parent="." index="4"]
+max_health = 20
+
+[node name="MeshContainer" type="Node3D" parent="." index="5"]
+
+[node name="DodoMesh" parent="MeshContainer" index="0" instance=ExtResource("1_l4ejr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.029, 5, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="MeshContainer/DodoMesh" index="2"]
+remote_path = NodePath("../../../BubbleBox")
+update_rotation = false
+update_scale = false
+
+[node name="BulletSpawner" type="Node3D" parent="MeshContainer/DodoMesh" index="3"]
 script = ExtResource("2_1mdbr")
 bullet_prefab = ExtResource("3_nk8a1")
-args = SubResource("Resource_28mfb")
+args = SubResource("Resource_rada6")
 
-[node name="LookAtPlayer" type="Node" parent="MeshContainer/DodoMesh/BulletSpawner"]
+[node name="LookAtPlayer" type="Node" parent="MeshContainer/DodoMesh/BulletSpawner" index="0"]
 script = ExtResource("5_c3wqd")
 
-[node name="BubbleBox" type="Area3D" parent="MeshContainer/DodoMesh"]
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshContainer/DodoMesh/BubbleBox"]
-shape = SubResource("SphereShape3D_g286k")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_k4mea")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_bu5my")
+[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
+tree_root = SubResource("AnimationNodeStateMachine_tfyvb")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="TimerClusterfuck" type="Node" parent="."]
+[node name="TimerClusterfuck" type="Node" parent="." index="8"]
 
-[node name="Timer" type="Timer" parent="TimerClusterfuck"]
+[node name="Timer" type="Timer" parent="TimerClusterfuck" index="0"]
 wait_time = 3.0
 one_shot = true
 
-[node name="Timer2" type="Timer" parent="TimerClusterfuck/Timer"]
+[node name="Timer2" type="Timer" parent="TimerClusterfuck/Timer" index="0"]
 wait_time = 0.666
 one_shot = true
 
-[node name="Timer3" type="Timer" parent="TimerClusterfuck/Timer"]
+[node name="Timer3" type="Timer" parent="TimerClusterfuck/Timer" index="1"]
 wait_time = 0.666
 one_shot = true
 
-[node name="Timer4" type="Timer" parent="TimerClusterfuck/Timer"]
+[node name="Timer4" type="Timer" parent="TimerClusterfuck/Timer" index="2"]
 wait_time = 0.666
 one_shot = true
 
-[node name="Timer5" type="Timer" parent="TimerClusterfuck"]
+[node name="Timer5" type="Timer" parent="TimerClusterfuck" index="1"]
 wait_time = 3.0
 one_shot = true
 
-[node name="Timer6" type="Timer" parent="TimerClusterfuck/Timer5"]
+[node name="Timer6" type="Timer" parent="TimerClusterfuck/Timer5" index="0"]
 wait_time = 0.666
 one_shot = true
 
-[node name="Timer7" type="Timer" parent="TimerClusterfuck/Timer5"]
+[node name="Timer7" type="Timer" parent="TimerClusterfuck/Timer5" index="1"]
 wait_time = 0.666
 one_shot = true
 
-[node name="Timer8" type="Timer" parent="TimerClusterfuck/Timer5"]
+[node name="Timer8" type="Timer" parent="TimerClusterfuck/Timer5" index="2"]
 wait_time = 0.666
 one_shot = true
 
-[node name="Timer9" type="Timer" parent="TimerClusterfuck"]
+[node name="Timer9" type="Timer" parent="TimerClusterfuck" index="2"]
 wait_time = 3.0
 one_shot = true
 
-[node name="Timer10" type="Timer" parent="TimerClusterfuck/Timer9"]
+[node name="Timer10" type="Timer" parent="TimerClusterfuck/Timer9" index="0"]
 wait_time = 0.666
 one_shot = true
 
-[node name="Timer11" type="Timer" parent="TimerClusterfuck/Timer9"]
+[node name="Timer11" type="Timer" parent="TimerClusterfuck/Timer9" index="1"]
 wait_time = 0.666
 one_shot = true
 
-[node name="Timer12" type="Timer" parent="TimerClusterfuck/Timer9"]
+[node name="Timer12" type="Timer" parent="TimerClusterfuck/Timer9" index="2"]
 wait_time = 0.666
 one_shot = true
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("7_sdmmh")
+[node name="AudioRandomizer" type="AudioStreamPlayer3D" parent="." index="9"]
+volume_db = 10.0
+script = ExtResource("7_afktb")
+play_random = true
+sounds = Array[AudioStreamOggVorbis]([ExtResource("8_r6sqp"), ExtResource("9_xbotr"), ExtResource("10_uant7"), ExtResource("11_ndsuu")])
+pitch_range = 0.1
 
+[connection signal="area_entered" from="BubbleBox" to="HealthComponent" method="adjust_health" unbinds=1]
+[connection signal="death" from="HealthComponent" to="." method="queue_free"]
+[connection signal="health_lost" from="HealthComponent" to="AudioRandomizer" method="play_random_from_list"]
 [connection signal="timeout" from="TimerClusterfuck/Timer" to="MeshContainer/DodoMesh/BulletSpawner" method="spawn_bullet"]
 [connection signal="timeout" from="TimerClusterfuck/Timer" to="TimerClusterfuck/Timer/Timer2" method="start"]
 [connection signal="timeout" from="TimerClusterfuck/Timer/Timer2" to="MeshContainer/DodoMesh/BulletSpawner" method="spawn_bullet"]

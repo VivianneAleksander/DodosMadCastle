@@ -1,10 +1,62 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyj7j8snnmhnx"]
+[gd_scene load_steps=10 format=3 uid="uid://dyj7j8snnmhnx"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_wetw0"]
 [ext_resource type="PackedScene" uid="uid://c8iq0i6l1x8q" path="res://scenes/levels/level_02.tscn" id="2_6mgqb"]
 [ext_resource type="PackedScene" uid="uid://c5un4m5w64ltw" path="res://scenes/prefabs/player.tscn" id="2_wdfib"]
 [ext_resource type="PackedScene" uid="uid://dxibtdkvno884" path="res://scenes/levels/level_boss.tscn" id="3_g3ttc"]
 [ext_resource type="PackedScene" uid="uid://c0jua411lyvnm" path="res://scenes/prefabs/world_environment.tscn" id="5_0etlw"]
+[ext_resource type="FontFile" uid="uid://dufcfsvq068e3" path="res://assets/fonts/WeirdComic-Regular.ttf" id="5_qsrmb"]
+
+[sub_resource type="Animation" id="Animation_tw2v8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y5iea"]
+resource_name = "end_screen"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"game_reset"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p26a2"]
+_data = {
+"RESET": SubResource("Animation_tw2v8"),
+"end_screen": SubResource("Animation_y5iea")
+}
 
 [node name="GameScene" type="Node3D" node_paths=PackedStringArray("Player")]
 script = ExtResource("1_wetw0")
@@ -18,3 +70,41 @@ transform = Transform3D(0.0718108, 0, 0.997418, 0, 1, 0, -0.997418, 0, 0.0718108
 transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 11, 0)
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("5_0etlw")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p26a2")
+}
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control/ColorRect"]
+layout_mode = 0
+anchor_left = 0.173611
+anchor_top = 0.166667
+anchor_right = 0.809896
+anchor_bottom = 0.75463
+theme_override_fonts/font = ExtResource("5_qsrmb")
+theme_override_font_sizes/font_size = 81
+text = "CONGRATULATIONS
+
+YOU ARE BECOME
+THE DODO"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

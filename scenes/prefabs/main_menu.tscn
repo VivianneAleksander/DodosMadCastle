@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkrvm2ngeqpfi"]
+[gd_scene load_steps=15 format=3 uid="uid://dkrvm2ngeqpfi"]
 
 [ext_resource type="PackedScene" uid="uid://bc3ynok8dlb78" path="res://scenes/prefabs/mad_castle.tscn" id="1_jd3uj"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_t6q4c"]
@@ -7,35 +7,8 @@
 [ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="3_srt0a"]
 [ext_resource type="FontFile" uid="uid://dufcfsvq068e3" path="res://assets/fonts/WeirdComic-Regular.ttf" id="4_nei82"]
 [ext_resource type="FontFile" uid="uid://bddfu72eg078b" path="res://assets/fonts/Ember.otf" id="5_xay75"]
-
-[sub_resource type="Animation" id="Animation_2wngj"]
-resource_name = "lightning"
-length = 30.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight3D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 28.2, 28.3, 28.8, 28.9, 29, 29.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, true, false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionalLight3D2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 28.2, 28.3, 28.8, 28.9, 29, 29.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, true, false, true, false]
-}
+[ext_resource type="AudioStream" uid="uid://b1mjghbp0n5t3" path="res://assets/music/Vehicle - OGA - Siberian Intro.wav" id="8_08rhm"]
+[ext_resource type="AudioStream" uid="uid://dngjljqhij1au" path="res://assets/sfx/ocean-waves-250310.ogg" id="9_wpjpx"]
 
 [sub_resource type="Animation" id="Animation_avw6q"]
 length = 0.001
@@ -66,7 +39,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer3/Control:visible")
+tracks/2/path = NodePath("OpeningText/Control:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -78,7 +51,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasLayer3/Control/ColorRect/Label2:visible")
+tracks/3/path = NodePath("OpeningText/Control/ColorRect/Label2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -90,7 +63,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CanvasLayer3/Control/ColorRect/Label3:visible")
+tracks/4/path = NodePath("OpeningText/Control/ColorRect/Label3:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -106,7 +79,7 @@ length = 9.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer3/Control:visible")
+tracks/0/path = NodePath("OpeningText/Control:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -118,7 +91,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer3/Control/ColorRect/Label2:visible")
+tracks/1/path = NodePath("OpeningText/Control/ColorRect/Label2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -130,7 +103,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer3/Control/ColorRect/Label3:visible")
+tracks/2/path = NodePath("OpeningText/Control/ColorRect/Label3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -152,6 +125,35 @@ tracks/3/keys = {
 "args": [],
 "method": &"enter_game_proper"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_2wngj"]
+resource_name = "lightning"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 28.2, 28.3, 28.8, 28.9, 29, 29.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 28.2, 28.3, 28.8, 28.9, 29, 29.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sil0o"]
@@ -197,9 +199,9 @@ libraries = {
 }
 autoplay = "lightning"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -208,7 +210,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+[node name="ColorRect" type="ColorRect" parent="UI/Control"]
 material = SubResource("ShaderMaterial_lo1ro")
 layout_mode = 1
 anchors_preset = 15
@@ -218,7 +220,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
+[node name="Label" type="Label" parent="UI/Control"]
 layout_mode = 0
 offset_left = 53.0
 offset_top = 23.0
@@ -233,7 +235,7 @@ theme_override_font_sizes/font_size = 71
 text = "Dodo's"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+[node name="Label2" type="Label" parent="UI/Control"]
 layout_mode = 0
 offset_left = 133.0
 offset_top = 93.0
@@ -247,7 +249,7 @@ theme_override_font_sizes/font_size = 71
 text = "Mad"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="CanvasLayer/Control"]
+[node name="Label3" type="Label" parent="UI/Control"]
 layout_mode = 0
 offset_left = 238.0
 offset_top = 161.0
@@ -261,28 +263,27 @@ theme_override_font_sizes/font_size = 71
 text = "Castle"
 horizontal_alignment = 1
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="EnterButton" type="Button" parent="UI/Control"]
+layout_mode = 2
+offset_left = 96.0
+offset_top = 401.0
+offset_right = 321.0
+offset_bottom = 460.0
+theme_override_fonts/font = ExtResource("5_xay75")
+text = "Enter"
 
-[node name="Control" type="Control" parent="CanvasLayer2"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="CanvasLayer2/Control"]
+[node name="CreditsButton" type="Button" parent="UI/Control"]
 layout_mode = 2
 offset_left = 96.0
 offset_top = 472.0
 offset_right = 321.0
 offset_bottom = 531.0
 theme_override_fonts/font = ExtResource("5_xay75")
-text = "Enter"
+text = "Credits"
 
-[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+[node name="CreditsUI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer3"]
+[node name="Control" type="Control" parent="CreditsUI"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -291,7 +292,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer3/Control"]
+[node name="ColorRect" type="ColorRect" parent="CreditsUI/Control"]
+material = SubResource("ShaderMaterial_lo1ro")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,7 +302,69 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer3/Control/ColorRect"]
+[node name="Label" type="Label" parent="CreditsUI/Control/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0407986
+anchor_top = 0.0787037
+anchor_right = 0.615451
+anchor_bottom = 0.808642
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("5_xay75")
+theme_override_font_sizes/font_size = 24
+text = "Game Design:
+
+    Vivianne Aleksander Shelburne
+    Nicole Barber
+
+SFX:
+    Vivianne Aleksander Shelburne
+
+Music:
+
+    Memoraphile @ You're Perfect Studio
+    SubspaceAudio @ OpenGameArt.com
+    Vehicle @ OpenGameArt.com
+
+Other Code:
+
+    NekotoArts @ nekotoarts.itch.io
+    aubrey @ godotshaders.com
+    tavurth @ github.com
+    "
+metadata/_edit_use_anchors_ = true
+
+[node name="Button3" type="Button" parent="CreditsUI/Control/ColorRect"]
+layout_mode = 2
+offset_left = 878.0
+offset_top = 541.0
+offset_right = 1103.0
+offset_bottom = 600.0
+theme_override_fonts/font = ExtResource("5_xay75")
+text = "Return"
+
+[node name="OpeningText" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="OpeningText"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="OpeningText/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="OpeningText/Control/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -317,7 +381,7 @@ text = "YOU    ARE    THE
 BUBBLEMANCER"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer3/Control/ColorRect"]
+[node name="Label2" type="Label" parent="OpeningText/Control/ColorRect"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -335,7 +399,7 @@ text = "ASCEND    THE
 MAD    THRONE"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="CanvasLayer3/Control/ColorRect"]
+[node name="Label3" type="Label" parent="OpeningText/Control/ColorRect"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -353,4 +417,16 @@ text = "USURP    THE
 DODO    KING"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer2/Control/Button" to="." method="enter_game_animation"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_08rhm")
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_wpjpx")
+autoplay = true
+
+[connection signal="pressed" from="UI/Control/EnterButton" to="." method="enter_game_animation"]
+[connection signal="pressed" from="UI/Control/CreditsButton" to="UI/Control" method="set_visible" binds= [false]]
+[connection signal="pressed" from="UI/Control/CreditsButton" to="CreditsUI/Control" method="set_visible" binds= [true]]
+[connection signal="pressed" from="CreditsUI/Control/ColorRect/Button3" to="UI/Control" method="set_visible" binds= [true]]
+[connection signal="pressed" from="CreditsUI/Control/ColorRect/Button3" to="CreditsUI/Control" method="set_visible" binds= [false]]

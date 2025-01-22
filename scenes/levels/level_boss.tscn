@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxibtdkvno884"]
+[gd_scene load_steps=13 format=3 uid="uid://dxibtdkvno884"]
 
 [ext_resource type="Script" path="res://scripts/levelManager.gd" id="1_q2iac"]
 [ext_resource type="PackedScene" uid="uid://dha58jrkm3phu" path="res://assets/meshes/levelboss.glb" id="2_x274d"]
@@ -8,7 +8,9 @@
 [ext_resource type="Material" uid="uid://bh8o27yttj6jr" path="res://assets/materials/castle_brass.tres" id="6_6h5ff"]
 [ext_resource type="Material" uid="uid://dmwt8t35uou5d" path="res://assets/materials/castle_grass.tres" id="6_yamse"]
 [ext_resource type="PackedScene" uid="uid://qjyyw5171q8f" path="res://scenes/prefabs/level_exit.tscn" id="7_p8bxl"]
-[ext_resource type="PackedScene" uid="uid://jc2q6ep3mrc7" path="res://scenes/prefabs/dodo_enemy.tscn" id="9_ncf0k"]
+[ext_resource type="PackedScene" uid="uid://cphwr1bvrm685" path="res://scenes/prefabs/dodo_enemy.tscn" id="9_ncf0k"]
+[ext_resource type="PackedScene" uid="uid://bfbnkufryuqga" path="res://scenes/prefabs/water_plane.tscn" id="10_42blm"]
+[ext_resource type="AudioStream" uid="uid://psy0y2tohvw8" path="res://assets/music/Juhani Junkala - Epic Boss Battle [Seamlessly Looping].ogg" id="11_o3uxk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hn2o7"]
 cull_mode = 2
@@ -30,15 +32,8 @@ surface_material_override/3 = ExtResource("6_yamse")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.09657, 0)
 
 [node name="LevelExit" parent="." instance=ExtResource("7_p8bxl")]
-process_mode = 4
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.771, 2.64654, -0.20985)
-visible = false
-
-[node name="Mesh" parent="LevelExit" index="0"]
-visible = false
-
-[node name="Area3D" parent="LevelExit" index="1"]
-transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.771, 2.26306, -0.20985)
+enabled = false
 
 [node name="flag" parent="LevelExit" instance=ExtResource("4_y3eil")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -46,10 +41,14 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="Flag" parent="LevelExit/flag" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hn2o7")
 
+[node name="WaterPlane" parent="." instance=ExtResource("10_42blm")]
+
 [node name="DodoEnemy" parent="." instance=ExtResource("9_ncf0k")]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_o3uxk")
+
+[connection signal="tree_exited" from="DodoEnemy" to="LevelExit" method="set_enabled" binds= [true]]
+
 [editable path="Mesh"]
-[editable path="LevelExit"]
-[editable path="LevelExit/Mesh"]
 [editable path="LevelExit/flag"]
-[editable path="DodoEnemy"]

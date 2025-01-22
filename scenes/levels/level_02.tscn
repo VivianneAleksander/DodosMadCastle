@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8iq0i6l1x8q"]
+[gd_scene load_steps=11 format=3 uid="uid://c8iq0i6l1x8q"]
 
 [ext_resource type="Script" path="res://scripts/levelManager.gd" id="1_7cr2s"]
 [ext_resource type="PackedScene" uid="uid://d3rffnaejbnxs" path="res://assets/meshes/level01.glb" id="1_ti6ps"]
@@ -7,7 +7,9 @@
 [ext_resource type="Material" uid="uid://cvnc0ho5pcwrr" path="res://assets/materials/castle_shingles.tres" id="4_gpws5"]
 [ext_resource type="Material" uid="uid://bh8o27yttj6jr" path="res://assets/materials/castle_brass.tres" id="5_ejni5"]
 [ext_resource type="PackedScene" uid="uid://qjyyw5171q8f" path="res://scenes/prefabs/level_exit.tscn" id="6_4ey17"]
+[ext_resource type="PackedScene" uid="uid://bfbnkufryuqga" path="res://scenes/prefabs/water_plane.tscn" id="7_tf1ow"]
 [ext_resource type="PackedScene" uid="uid://d1dn4kgasufbx" path="res://scenes/prefabs/frog_enemy.tscn" id="8_wsovv"]
+[ext_resource type="AudioStream" uid="uid://bd50kso88or36" path="res://assets/music/Memoraphile - Spooky Dungeon.ogg" id="10_88v06"]
 
 [node name="Level02" type="Node3D" node_paths=PackedStringArray("PlayerStart")]
 script = ExtResource("1_7cr2s")
@@ -21,6 +23,8 @@ surface_material_override/1 = ExtResource("3_8e565")
 surface_material_override/2 = ExtResource("4_gpws5")
 surface_material_override/3 = ExtResource("5_ejni5")
 
+[node name="WaterPlane" parent="Mesh" instance=ExtResource("7_tf1ow")]
+
 [node name="PlayerSpawn" type="Node3D" parent="."]
 transform = Transform3D(-0.0934829, 0, 0.995621, 0, 1, 0, -0.995621, 0, -0.0934829, 8.36718, 1.01806, -11.528)
 
@@ -28,7 +32,7 @@ transform = Transform3D(-0.0934829, 0, 0.995621, 0, 1, 0, -0.995621, 0, -0.09348
 transform = Transform3D(-0.999093, 0, 0.0425731, 0, 1, 0, -0.0425731, 0, -0.999093, -8.25763, 4.41987, -16.404)
 
 [node name="FrogSpawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762165, 0, -12.7946)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.762165, 0.366381, -12.7946)
 
 [node name="FrogEnemy" parent="FrogSpawner" instance=ExtResource("8_wsovv")]
 
@@ -57,4 +61,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36382, 4.20511, -9.33052)
 
 [node name="FrogEnemy" parent="FrogSpawner6" instance=ExtResource("8_wsovv")]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_88v06")
+
 [editable path="Mesh"]
+[editable path="FrogSpawner/FrogEnemy"]
