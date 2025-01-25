@@ -282,9 +282,9 @@ theme_override_fonts/font = ExtResource("5_xay75")
 text = "Credits"
 
 [node name="CreditsUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="CreditsUI"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -307,8 +307,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0407986
 anchor_top = 0.0787037
-anchor_right = 0.615451
-anchor_bottom = 0.808642
+anchor_right = 0.423611
+anchor_bottom = 0.655864
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 20
 theme_override_fonts/font = ExtResource("5_xay75")
@@ -325,14 +325,30 @@ Music:
 
     Memoraphile @ You're Perfect Studio
     SubspaceAudio @ OpenGameArt.com
-    Vehicle @ OpenGameArt.com
+    Vehicle @ OpenGameArt.com"
+metadata/_edit_use_anchors_ = true
 
-Other Code:
+[node name="Label2" type="Label" parent="CreditsUI/Control/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.486111
+anchor_top = 0.0787037
+anchor_right = 0.868924
+anchor_bottom = 0.655864
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("5_xay75")
+theme_override_font_sizes/font_size = 24
+text = "Other Code:
 
     NekotoArts @ nekotoarts.itch.io
     aubrey @ godotshaders.com
     tavurth @ github.com
-    "
+
+Textures
+
+    ambientcg.com
+    texturecan.com"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button3" type="Button" parent="CreditsUI/Control/ColorRect"]
